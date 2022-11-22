@@ -1,5 +1,6 @@
 [
   {
+    "id": 0,
     "name": "Artem Andr Igon",
     "age": 27,
     "gender": "man",
@@ -7,6 +8,7 @@
     "location": "Ulyanovsk"
   },
   {
+    "id": 1,
     "name": "Mike and Mouse",
     "age": 20,
     "gender": "man",
@@ -14,6 +16,7 @@
     "location": "Ulyanovsk"
   },
   {
+    "id": 2,
     "name": "Anton Protowka ProstoTowka",
     "age": 21,
     "gender": "man",
@@ -21,20 +24,23 @@
     "location": "Moscow"
   },
   {
+    "id": 3,
     "name": "IIIIGOR aga",
     "age": 24,
-    "gender": "man",
+    "gender": "woman",
     "job": "python dev",
     "location": "Samara"
   },
   {
+    "id": 4,
     "name": "Valya Carnaval",
     "age": 21,
-    "gender": "man",
+    "gender": "woman",
     "job": "fullstack dev",
     "location": "Sant-Petesberg"
   },
   {
+    "id": 5,
     "name": "Serega Prosto Serega",
     "age": 19,
     "gender": "man",

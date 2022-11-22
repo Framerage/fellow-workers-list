@@ -1,20 +1,26 @@
 import React, { useState } from "react";
 import "./card.scss";
 import avatarMan from "../../assets/images/avatar-man.png";
+import avatarWoman from "../../assets/images/avatar-woman.png";
+import { PersonListProps } from "types/appTypes";
 
-const Card = () => {
+const Card: React.FC<PersonListProps> = ({ ...props }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isEditActive, setIsEditActive] = useState(false);
 
   return (
     <div className="personCard">
       <div className="personCard__avatar">
-        <img src={avatarMan} alt="ava-man" />
+        <img
+          src={props.gender === "man" ? avatarMan : avatarWoman}
+          alt="ava-man"
+        />
         <span className={isEditActive ? "avatar__name vision" : "avatar__name"}>
-          Black Ronald Street
+          {props.name}
         </span>
         <input
           type="text"
+          value={props.name}
           className={
             isEditActive ? "avatar__nameEdit" : "avatar__nameEdit vision"
           }
@@ -61,15 +67,19 @@ const Card = () => {
           <li>
             age:{" "}
             {isEditActive ? (
-              <input className="descrip__ageEdit" type="text" />
+              <input
+                value={props.age}
+                className="descrip__ageEdit"
+                type="text"
+              />
             ) : (
-              "27"
+              props.age
             )}
           </li>
-          <li>job: front-end</li>
-          <li>city: Moscow</li>
+          <li>job: {props.job}</li>
+          <li>city: {props.location}</li>
           <li>drive: none</li>
-          <li>gender: man</li>
+          <li>gender: {props.gender}</li>
         </ul>
       </div>
     </div>

@@ -8,8 +8,8 @@ const Layout = () => {
     <div className="wrapper">
       <Header />
       <Routes>
-        <Route index path="/home" element={<Home />} />
-        <Route path="home/:id" />
+        <Route index path="/" element={<Home />} />
+        <Route path="/:id" />
       </Routes>
     </div>
   );
