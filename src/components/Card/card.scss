@@ -1,0 +1,140 @@
+.personCard {
+  border: 1px solid white;
+  border-radius: 25px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  margin: 5px;
+  .personCard__avatar {
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    .avatar__name {
+      padding: 10px;
+    }
+    .avatar__nameEdit {
+      width: 150px;
+      height: 15px;
+      color: white;
+      background-color: transparent;
+      border: 1px solid white;
+      border-radius: 3px;
+      padding: 10px;
+      margin: 5px 0;
+    }
+    .vision {
+      display: none;
+    }
+    img {
+      width: 150px;
+      height: 150px;
+      padding: 5px;
+      cursor: pointer;
+      transition: 0.2s;
+      &:active {
+        transform: scale(0.98);
+      }
+    }
+  }
+  .personCard__descrip {
+    margin: 5px;
+    padding: 10px;
+    position: relative;
+    div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      span {
+        font-size: 1.5em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .sentBtn {
+        width: 25px;
+        height: 25px;
+        background-color: transparent;
+        color: white;
+        border: 1px solid white;
+        border-radius: 5px;
+        margin-left: 5px;
+      }
+      .descrip__active {
+        background-color: transparent;
+        color: white;
+        font-size: 1.5em;
+        border: 1px solid white;
+        border-radius: 10px;
+        padding: 0 5px;
+        text-align: center;
+        transition: 0.2s;
+        &:hover {
+          cursor: pointer;
+          box-shadow: 0 0 10px 2px white;
+        }
+      }
+
+      .descrip__activeBtns {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        top: 15px;
+        right: 10px;
+        .activeBtn__edit {
+          width: 25px;
+          height: 25px;
+          border: 1px solid white;
+          border-radius: 13px;
+          color: white;
+          font-size: 1.5em;
+          display: flex;
+          justify-content: center;
+          align-content: center;
+          background-image: url(../../assets/images/editBtn.png);
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center center;
+          cursor: pointer;
+          &:hover {
+            box-shadow: 0 0 10px 2px white;
+          }
+        }
+        .activeBtn__delete {
+          width: 25px;
+          height: 25px;
+          border: 1px solid white;
+          border-radius: 13px;
+          color: white;
+          font-size: 1.2em;
+          display: flex;
+          justify-content: center;
+          align-content: center;
+          cursor: pointer;
+          background-color: transparent;
+          margin-top: 5px;
+          &:hover {
+            box-shadow: 0 0 10px 2px white;
+          }
+        }
+      }
+      .vision {
+        display: none;
+      }
+    }
+    ul {
+      .descrip__ageEdit {
+        width: 50px;
+        background-color: transparent;
+        border: 1px solid white;
+        border-radius: 3px;
+        padding: 2px;
+        color: white;
+      }
+      li {
+        list-style-type: none;
+      }
+    }
+  }
+}

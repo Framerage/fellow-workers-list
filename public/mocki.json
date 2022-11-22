@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Artem Andr Igon",
+    "age": 27,
+    "gender": "man",
+    "job": "front-end dev",
+    "location": "Ulyanovsk"
+  },
+  {
+    "name": "Mike and Mouse",
+    "age": 20,
+    "gender": "man",
+    "job": "back-end dev",
+    "location": "Ulyanovsk"
+  },
+  {
+    "name": "Anton Protowka ProstoTowka",
+    "age": 21,
+    "gender": "man",
+    "job": "front-end dev",
+    "location": "Moscow"
+  },
+  {
+    "name": "IIIIGOR aga",
+    "age": 24,
+    "gender": "man",
+    "job": "python dev",
+    "location": "Samara"
+  },
+  {
+    "name": "Valya Carnaval",
+    "age": 21,
+    "gender": "man",
+    "job": "fullstack dev",
+    "location": "Sant-Petesberg"
+  },
+  {
+    "name": "Serega Prosto Serega",
+    "age": 19,
+    "gender": "man",
+    "job": "java dev",
+    "location": "Samara"
+  }
+]
