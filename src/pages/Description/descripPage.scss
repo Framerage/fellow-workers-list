@@ -1,0 +1,51 @@
+@import "../../assets/styles/globalStyles.scss";
+.descripContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4em;
+  .container__descripPage {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+    background: radial-gradient(
+      $themeBsColor,
+      transparent,
+      //   $themeBsColor,
+      //   transparent,
+      //   $themeBsColor
+    );
+    border-radius: 200px 50px 50px 200px;
+    .descripPage__photo {
+      img {
+        width: 400px;
+        height: 400px;
+        margin: 10px;
+        border-radius: 200px;
+      }
+    }
+    .descripPage__personalDescrip {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: minmax(100px, 150px);
+      .personalDescrip__characters {
+        margin: 5px;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        ul {
+          margin: 5px;
+          width: 90% !important;
+          li {
+            list-style-type: none;
+            margin-bottom: 5px;
+          }
+        }
+        .characters__controlBtns {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+  }
+}

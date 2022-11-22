@@ -1,17 +1,28 @@
 import React, { useState } from "react";
 import "./card.scss";
+import EditBtn from "components/UI/EditBtn/EditBtn";
 import avatarMan from "../../assets/images/avatar-man.png";
 import avatarWoman from "../../assets/images/avatar-woman.png";
 import { PersonListProps } from "types/appTypes";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const Card: React.FC<PersonListProps> = ({ ...props }) => {
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isEditActive, setIsEditActive] = useState(false);
+  const [cookies, setCookies] = useCookies(["choosedPerson"]);
 
+  const followingToDescripPage = (persId: number) => {
+    setCookies("choosedPerson", `${persId}`);
+    navigate(`/:${persId}`);
+  };
   return (
     <div className="personCard">
       <div className="personCard__avatar">
+        {" "}
         <img
+          onClick={() => followingToDescripPage(props.id)}
           src={props.gender === "man" ? avatarMan : avatarWoman}
           alt="ava-man"
         />
@@ -51,10 +62,7 @@ const Card: React.FC<PersonListProps> = ({ ...props }) => {
               isMenuOpen ? "descrip__activeBtns" : "descrip__activeBtns vision"
             }
           >
-            <div
-              className="activeBtn__edit"
-              onClick={() => setIsEditActive(!isEditActive)}
-            ></div>
+            <EditBtn onClick={() => setIsEditActive(!isEditActive)} />
             <div
               className="activeBtn__delete"
               onClick={() => setIsMenuOpen(false)}

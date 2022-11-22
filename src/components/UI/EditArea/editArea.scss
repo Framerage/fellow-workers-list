@@ -1,0 +1,46 @@
+@import "../../../assets/styles/globalStyles.scss";
+
+.personalDescrip__detailedDescrip {
+  margin: 5px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+.personalDescrip__editDetailedDescrip {
+  display: flex;
+  margin: 5px;
+  height: 100px !important;
+
+  .editDetailedDescrip__textArea {
+    color: $textContentColor;
+    padding: 5px;
+    text-align: start;
+    width: 90% !important;
+    height: 100px !important;
+    background-color: transparent;
+    border: 1px solid $bordersColor;
+  }
+  .editDetailedDescrip__activeBtns {
+    display: flex;
+    flex-direction: column;
+    width: 10% !important;
+    height: 100px !important;
+  }
+}
+.activeBtns__controlBtn {
+  width: 25px;
+  height: 25px;
+  border-radius: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  transition: 0.2s;
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 0 5px 5px $themeTsColorSelection;
+  }
+}
+.vision {
+  display: none;
+}

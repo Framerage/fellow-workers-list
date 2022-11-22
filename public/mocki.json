@@ -1,50 +1,76 @@
-[
-  {
-    "id": 0,
-    "name": "Artem Andr Igon",
-    "age": 27,
-    "gender": "man",
-    "job": "front-end dev",
-    "location": "Ulyanovsk"
-  },
-  {
-    "id": 1,
-    "name": "Mike and Mouse",
-    "age": 20,
-    "gender": "man",
-    "job": "back-end dev",
-    "location": "Ulyanovsk"
-  },
-  {
-    "id": 2,
-    "name": "Anton Protowka ProstoTowka",
-    "age": 21,
-    "gender": "man",
-    "job": "front-end dev",
-    "location": "Moscow"
-  },
-  {
-    "id": 3,
-    "name": "IIIIGOR aga",
-    "age": 24,
-    "gender": "woman",
-    "job": "python dev",
-    "location": "Samara"
-  },
-  {
-    "id": 4,
-    "name": "Valya Carnaval",
-    "age": 21,
-    "gender": "woman",
-    "job": "fullstack dev",
-    "location": "Sant-Petesberg"
-  },
-  {
-    "id": 5,
-    "name": "Serega Prosto Serega",
-    "age": 19,
-    "gender": "man",
-    "job": "java dev",
-    "location": "Samara"
-  }
-]
+{
+  "personList": [
+    {
+      "id": 0,
+      "name": "Artem Andr Igon",
+      "age": 27,
+      "gender": "man",
+      "job": "front-end dev",
+      "location": "Ulyanovsk"
+    },
+    {
+      "id": 1,
+      "name": "Mike and Mouse",
+      "age": 20,
+      "gender": "man",
+      "job": "back-end dev",
+      "location": "Ulyanovsk"
+    },
+    {
+      "id": 2,
+      "name": "Anton Protowka ProstoTowka",
+      "age": 21,
+      "gender": "man",
+      "job": "front-end dev",
+      "location": "Moscow"
+    },
+    {
+      "id": 3,
+      "name": "IIIIGOR aga",
+      "age": 24,
+      "gender": "woman",
+      "job": "python dev",
+      "location": "Samara"
+    },
+    {
+      "id": 4,
+      "name": "Valya Carnaval",
+      "age": 21,
+      "gender": "woman",
+      "job": "fullstack dev",
+      "location": "Sant-Petesberg"
+    },
+    {
+      "id": 5,
+      "name": "Serega Prosto Serega",
+      "age": 19,
+      "gender": "man",
+      "job": "java dev",
+      "location": "Samara"
+    },
+    {
+      "id": 6,
+      "name": "IIIIGOR aga",
+      "age": 24,
+      "gender": "woman",
+      "job": "python dev",
+      "location": "Samara"
+    },
+    {
+      "id": 7,
+      "name": "Valya Carnaval",
+      "age": 21,
+      "gender": "woman",
+      "job": "fullstack dev",
+      "location": "Sant-Petesberg"
+    },
+    {
+      "id": 8,
+      "name": "Serega Prosto Serega",
+      "age": 19,
+      "gender": "man",
+      "job": "java dev",
+      "location": "Samara"
+    }
+  ]
+}

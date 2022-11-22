@@ -1,3 +1,4 @@
+@import "./globalStyles.scss";
 * {
   margin: 0;
   padding: 0;
@@ -5,7 +6,7 @@
 }
 html,
 body {
-  background-color: black;
-  color: white;
+  background-color: $bg;
+  color: $textContentColor;
   font-size: 4px;
 }
