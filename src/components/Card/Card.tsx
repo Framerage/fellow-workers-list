@@ -1,22 +1,43 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import "./card.scss";
 import EditBtn from "components/UI/EditBtn/EditBtn";
 import avatarMan from "../../assets/images/avatar-man.png";
 import avatarWoman from "../../assets/images/avatar-woman.png";
-import { PersonListProps } from "types/appTypes";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
-const Card: React.FC<PersonListProps> = ({ ...props }) => {
+type CardProps = {
+  removePerson: Function;
+  editPersonCharacters: Function;
+  name: string;
+  age: number;
+  id: number;
+  location: string;
+  job: string;
+  gender: string;
+};
+function Card({ removePerson, editPersonCharacters, ...props }: CardProps) {
   const navigate = useNavigate();
+  const [cookies, setCookies] = useCookies(["choosedPerson"]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isEditActive, setIsEditActive] = useState(false);
-  const [cookies, setCookies] = useCookies(["choosedPerson"]);
+  const [editCharacters, setEditCharacters] = useState({
+    age: props.age,
+    name: props.name,
+  });
 
   const followingToDescripPage = (persId: number) => {
     setCookies("choosedPerson", `${persId}`);
     navigate(`/:${persId}`);
   };
+  const editPerson = useCallback(
+    (params: {}) => {
+      editPersonCharacters({ ...params, id: props.id });
+      setIsMenuOpen(false);
+      setIsEditActive(false);
+    },
+    [isMenuOpen, isEditActive]
+  );
   return (
     <div className="personCard">
       <div className="personCard__avatar">
@@ -31,9 +52,15 @@ const Card: React.FC<PersonListProps> = ({ ...props }) => {
         </span>
         <input
           type="text"
-          value={props.name}
+          value={editCharacters.name}
           className={
             isEditActive ? "avatar__nameEdit" : "avatar__nameEdit vision"
+          }
+          onChange={(e) =>
+            setEditCharacters({
+              ...editCharacters,
+              name: e.target.value,
+            })
           }
         />
       </div>
@@ -44,6 +71,7 @@ const Card: React.FC<PersonListProps> = ({ ...props }) => {
             <button
               className={isEditActive ? "sentBtn" : "vision"}
               type="button"
+              onClick={() => editPerson(editCharacters)}
             >
               OK
             </button>
@@ -62,10 +90,11 @@ const Card: React.FC<PersonListProps> = ({ ...props }) => {
               isMenuOpen ? "descrip__activeBtns" : "descrip__activeBtns vision"
             }
           >
-            <EditBtn onClick={() => setIsEditActive(!isEditActive)} />
+            <EditBtn onClick={() => setIsEditActive(true)} />
             <div
+              role="presentation"
               className="activeBtn__delete"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => removePerson(props.id)}
             >
               x
             </div>
@@ -76,9 +105,15 @@ const Card: React.FC<PersonListProps> = ({ ...props }) => {
             age:{" "}
             {isEditActive ? (
               <input
-                value={props.age}
+                value={editCharacters.age}
                 className="descrip__ageEdit"
                 type="text"
+                onChange={(e) =>
+                  setEditCharacters({
+                    ...editCharacters,
+                    age: Number(e.target.value),
+                  })
+                }
               />
             ) : (
               props.age
@@ -86,11 +121,10 @@ const Card: React.FC<PersonListProps> = ({ ...props }) => {
           </li>
           <li>job: {props.job}</li>
           <li>city: {props.location}</li>
-          <li>drive: none</li>
           <li>gender: {props.gender}</li>
         </ul>
       </div>
     </div>
   );
-};
+}
 export default Card;

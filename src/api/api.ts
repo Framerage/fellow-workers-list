@@ -6,5 +6,5 @@ const fetchData = axios.create({
 });
 export const getFetchedPersonList = async () => {
   const responce = await fetchData.get("");
-  return responce.data.personList;
+  return responce.data;
 };
