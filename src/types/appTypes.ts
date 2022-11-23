@@ -1,7 +1,10 @@
-export type TasksProps = {
-  taskName: string;
-  taskDescrip: string;
-  isTaskDone: boolean;
+import store from "store/store";
+export type PersonListProps = {
+  name: string;
+  age: number;
   id: number;
-  forDate: string;
+  location: string;
+  job: string;
+  gender: string;
 };
+export type AppDispatch = typeof store.dispatch;

@@ -1,5 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-const rootReducer = combineReducers({});
+import { ListStateProps } from "./personList/types";
+import listReducer from "./personList";
+export type Store = {
+  list: ListStateProps;
+};
+const rootReducer = combineReducers<Store>({
+  list: listReducer,
+});
 const store = configureStore({
   reducer: rootReducer,
 });

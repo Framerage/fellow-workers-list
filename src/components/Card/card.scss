@@ -1,9 +1,17 @@
+@import "../../assets/styles/globalStyles.scss";
 .personCard {
-  border: 1px solid white;
+  border: 1px solid $bordersColor;
   border-radius: 25px;
   display: grid;
   grid-template-columns: 50% 50%;
   margin: 5px;
+  background: linear-gradient(
+    $themeBsColor,
+    transparent,
+    $themeBsColor,
+    transparent,
+    $themeBsColor
+  );
   .personCard__avatar {
     margin: 5px;
     display: flex;
@@ -16,9 +24,9 @@
     .avatar__nameEdit {
       width: 150px;
       height: 15px;
-      color: white;
+      color: $textContentColor;
       background-color: transparent;
-      border: 1px solid white;
+      border: 1px solid $bordersColor;
       border-radius: 3px;
       padding: 10px;
       margin: 5px 0;
@@ -55,23 +63,31 @@
         width: 25px;
         height: 25px;
         background-color: transparent;
-        color: white;
-        border: 1px solid white;
+        color: $textContentColor;
+        border: 1px solid $bordersColor;
         border-radius: 5px;
         margin-left: 5px;
+        transition: 0.2s;
+        &:hover {
+          box-shadow: 0 0 5px 5px $themeTsColorSelection;
+          cursor: pointer;
+        }
+        &:active {
+          transform: scale(0.9);
+        }
       }
       .descrip__active {
         background-color: transparent;
-        color: white;
+        color: $textContentColor;
         font-size: 1.5em;
-        border: 1px solid white;
+        border: 1px solid $bordersColor;
         border-radius: 10px;
         padding: 0 5px;
         text-align: center;
         transition: 0.2s;
         &:hover {
           cursor: pointer;
-          box-shadow: 0 0 10px 2px white;
+          box-shadow: 0 0 10px 2px $themeTsColorSelection;
         }
       }
 
@@ -85,9 +101,9 @@
         .activeBtn__edit {
           width: 25px;
           height: 25px;
-          border: 1px solid white;
+          border: 1px solid $bordersColor;
           border-radius: 13px;
-          color: white;
+          color: $textContentColor;
           font-size: 1.5em;
           display: flex;
           justify-content: center;
@@ -98,15 +114,15 @@
           background-position: center center;
           cursor: pointer;
           &:hover {
-            box-shadow: 0 0 10px 2px white;
+            box-shadow: 0 0 10px 2px $themeTsColorSelection;
           }
         }
         .activeBtn__delete {
           width: 25px;
           height: 25px;
-          border: 1px solid white;
+          border: 1px solid $bordersColor;
           border-radius: 13px;
-          color: white;
+          color: $textContentColor;
           font-size: 1.2em;
           display: flex;
           justify-content: center;
@@ -115,7 +131,7 @@
           background-color: transparent;
           margin-top: 5px;
           &:hover {
-            box-shadow: 0 0 10px 2px white;
+            box-shadow: 0 0 10px 2px $themeTsColorSelection;
           }
         }
       }
@@ -127,10 +143,10 @@
       .descrip__ageEdit {
         width: 50px;
         background-color: transparent;
-        border: 1px solid white;
+        border: 1px solid $bordersColor;
         border-radius: 3px;
         padding: 2px;
-        color: white;
+        color: $textContentColor;
       }
       li {
         list-style-type: none;

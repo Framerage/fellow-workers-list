@@ -1,22 +1,66 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import "./card.scss";
+import EditBtn from "components/UI/EditBtn/EditBtn";
 import avatarMan from "../../assets/images/avatar-man.png";
+import avatarWoman from "../../assets/images/avatar-woman.png";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
-const Card = () => {
+type CardProps = {
+  removePerson: Function;
+  editPersonCharacters: Function;
+  name: string;
+  age: number;
+  id: number;
+  location: string;
+  job: string;
+  gender: string;
+};
+function Card({ removePerson, editPersonCharacters, ...props }: CardProps) {
+  const navigate = useNavigate();
+  const [cookies, setCookies] = useCookies(["choosedPerson"]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isEditActive, setIsEditActive] = useState(false);
+  const [editCharacters, setEditCharacters] = useState({
+    age: props.age,
+    name: props.name,
+  });
 
+  const followingToDescripPage = (persId: number) => {
+    setCookies("choosedPerson", `${persId}`);
+    navigate(`/:${persId}`);
+  };
+  const editPerson = useCallback(
+    (params: {}) => {
+      editPersonCharacters({ ...params, id: props.id });
+      setIsMenuOpen(false);
+      setIsEditActive(false);
+    },
+    [isMenuOpen, isEditActive]
+  );
   return (
     <div className="personCard">
       <div className="personCard__avatar">
-        <img src={avatarMan} alt="ava-man" />
+        {" "}
+        <img
+          onClick={() => followingToDescripPage(props.id)}
+          src={props.gender === "man" ? avatarMan : avatarWoman}
+          alt="ava-man"
+        />
         <span className={isEditActive ? "avatar__name vision" : "avatar__name"}>
-          Black Ronald Street
+          {props.name}
         </span>
         <input
           type="text"
+          value={editCharacters.name}
           className={
             isEditActive ? "avatar__nameEdit" : "avatar__nameEdit vision"
+          }
+          onChange={(e) =>
+            setEditCharacters({
+              ...editCharacters,
+              name: e.target.value,
+            })
           }
         />
       </div>
@@ -27,6 +71,7 @@ const Card = () => {
             <button
               className={isEditActive ? "sentBtn" : "vision"}
               type="button"
+              onClick={() => editPerson(editCharacters)}
             >
               OK
             </button>
@@ -45,13 +90,11 @@ const Card = () => {
               isMenuOpen ? "descrip__activeBtns" : "descrip__activeBtns vision"
             }
           >
+            <EditBtn onClick={() => setIsEditActive(true)} />
             <div
-              className="activeBtn__edit"
-              onClick={() => setIsEditActive(!isEditActive)}
-            ></div>
-            <div
+              role="presentation"
               className="activeBtn__delete"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => removePerson(props.id)}
             >
               x
             </div>
@@ -61,18 +104,27 @@ const Card = () => {
           <li>
             age:{" "}
             {isEditActive ? (
-              <input className="descrip__ageEdit" type="text" />
+              <input
+                value={editCharacters.age}
+                className="descrip__ageEdit"
+                type="text"
+                onChange={(e) =>
+                  setEditCharacters({
+                    ...editCharacters,
+                    age: Number(e.target.value),
+                  })
+                }
+              />
             ) : (
-              "27"
+              props.age
             )}
           </li>
-          <li>job: front-end</li>
-          <li>city: Moscow</li>
-          <li>drive: none</li>
-          <li>gender: man</li>
+          <li>job: {props.job}</li>
+          <li>city: {props.location}</li>
+          <li>gender: {props.gender}</li>
         </ul>
       </div>
     </div>
   );
-};
+}
 export default Card;

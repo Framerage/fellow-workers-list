@@ -6,6 +6,12 @@ const Header = () => {
   const navToHome = () => {
     navigate("/");
   };
-  return <div className="header" onClick={navToHome}></div>;
+  // добавить приколюшку на светотемы
+  return (
+    <div className="header">
+      <div className="header__logo" onClick={navToHome}></div>
+      <div className="header__outline"></div>
+    </div>
+  );
 };
 export default Header;

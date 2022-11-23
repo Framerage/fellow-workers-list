@@ -1,0 +1,21 @@
+@import "../../../assets/styles/globalStyles.scss";
+
+.editBtn {
+  width: 25px;
+  height: 25px;
+  border: 1px solid $bordersColor;
+  border-radius: 13px;
+  color: $textContentColor;
+  font-size: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background-image: url(../../../assets/images/editBtn.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0 0 10px 2px $themeTsColorSelection;
+  }
+}
