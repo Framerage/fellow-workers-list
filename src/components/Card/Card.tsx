@@ -5,6 +5,7 @@ import avatarMan from "../../assets/images/avatar-man.png";
 import avatarWoman from "../../assets/images/avatar-woman.png";
 import {useNavigate} from "react-router-dom";
 import {useCookies} from "react-cookie";
+import CharacterPoint from "components/UI/CharacterPoint/CharacterPoint";
 
 type CardProps = {
   removePerson: Function;
@@ -22,8 +23,12 @@ function Card({removePerson, editPersonCharacters, ...props}: CardProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isEditActive, setIsEditActive] = useState(false);
   const [editCharacters, setEditCharacters] = useState({
-    age: props.age,
     name: props.name,
+    age: props.age,
+    id: NaN,
+    gender: "",
+    job: "",
+    location: "",
   });
 
   const followingToDescripPage = (persId: number) => {
@@ -38,6 +43,17 @@ function Card({removePerson, editPersonCharacters, ...props}: CardProps) {
     },
     [props.id, editPersonCharacters],
   );
+
+  const paramsName = Object.keys(editCharacters).filter(
+    el => el !== "name" && el !== "id",
+  );
+  const paramsValue = Object.values(editCharacters).filter(
+    el => el !== props.name && el !== props.id && !isNaN(Number(el)),
+  );
+  const propsValue = Object.values(props).filter(
+    el => el !== props.name && el !== props.id,
+  );
+
   return (
     <div className="personCard">
       <div className="personCard__avatar">
@@ -47,22 +63,21 @@ function Card({removePerson, editPersonCharacters, ...props}: CardProps) {
           src={props.gender === "man" ? avatarMan : avatarWoman}
           alt="ava-man"
         />
-        <span className={isEditActive ? "avatar__name vision" : "avatar__name"}>
-          {props.name}
-        </span>
-        <input
-          type="text"
-          value={editCharacters.name}
-          className={
-            isEditActive ? "avatar__nameEdit" : "avatar__nameEdit vision"
-          }
-          onChange={e =>
-            setEditCharacters({
-              ...editCharacters,
-              name: e.target.value,
-            })
-          }
-        />
+        {isEditActive ? (
+          <input
+            type="text"
+            value={editCharacters.name}
+            className="avatar__nameEdit"
+            onChange={e =>
+              setEditCharacters({
+                ...editCharacters,
+                name: e.target.value,
+              })
+            }
+          />
+        ) : (
+          <span className="avatar__name">{props.name}</span>
+        )}
       </div>
       <div className="personCard__descrip">
         <div>
@@ -101,7 +116,20 @@ function Card({removePerson, editPersonCharacters, ...props}: CardProps) {
           </div>
         </div>
         <ul>
-          <li>
+          {paramsName.map((keyName, index) => (
+            <CharacterPoint
+              key={keyName}
+              isEditActive={isEditActive}
+              paramName={keyName}
+              param={
+                paramsValue[index] ? paramsValue[index] : propsValue[index]
+              }
+              editCharacters={editCharacters}
+              setEditCharacters={setEditCharacters}
+            />
+          ))}
+
+          {/* <li>
             age:{" "}
             {isEditActive ? (
               <input
@@ -111,6 +139,7 @@ function Card({removePerson, editPersonCharacters, ...props}: CardProps) {
                 onChange={e =>
                   setEditCharacters({
                     ...editCharacters,
+                    // age: Number(e.target.value),
                     age: Number(e.target.value),
                   })
                 }
@@ -118,10 +147,10 @@ function Card({removePerson, editPersonCharacters, ...props}: CardProps) {
             ) : (
               props.age
             )}
-          </li>
-          <li>job: {props.job}</li>
+          </li> */}
+          {/* <li>job: {props.job}</li>
           <li>city: {props.location}</li>
-          <li>gender: {props.gender}</li>
+          <li>gender: {props.gender}</li> */}
         </ul>
       </div>
     </div>

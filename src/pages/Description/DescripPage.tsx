@@ -1,21 +1,21 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import "./descripPage.scss";
 import avatarMan from "../../assets/images/avatar-man.png";
 import avatarWoman from "../../assets/images/avatar-woman.png";
-import { useDispatch, useSelector } from "react-redux";
-import { selectPersonList } from "store/personList/selectors";
-import { useCookies } from "react-cookie";
-import { AppDispatch, PersonListProps } from "types/appTypes";
+import {useDispatch, useSelector} from "react-redux";
+import {selectPersonList} from "store/personList/selectors";
+import {useCookies} from "react-cookie";
+import {AppDispatch, PersonListProps} from "types/appTypes";
 import EditArea from "components/UI/EditArea/EditArea";
 import EditBtn from "components/UI/EditBtn/EditBtn";
-import { editPersonParams } from "utils/helpers/helpers";
-import { editPersonMainCharacters } from "store/personList/actions";
+import {editPersonParams} from "utils/helpers/helpers";
+import {editPersonMainCharacters} from "store/personList/actions";
 const DescripPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [cookies] = useCookies(["choosedPerson"]);
   const gettedPersonList = useSelector(selectPersonList);
   const gettedPersonInfo = gettedPersonList.filter(
-    (el) => el.id === Number(cookies.choosedPerson)
+    el => el.id === Number(cookies.choosedPerson),
   );
   const [personInfo, setPersonInfo] =
     useState<PersonListProps[]>(gettedPersonInfo);
@@ -31,7 +31,7 @@ const DescripPage = () => {
   const editPersonalParams = (info: PersonListProps) => {
     setPersonInfo(editPersonParams(gettedPersonList, info));
     dispatch(
-      editPersonMainCharacters(editPersonParams(gettedPersonList, info))
+      editPersonMainCharacters(editPersonParams(gettedPersonList, info)),
     );
     setIsEditCharactersOpen(false);
   };
@@ -52,13 +52,13 @@ const DescripPage = () => {
           <div className="personalDescrip__characters">
             <ul>
               <li>
-                Name:{" "}
+                Name:&nbsp;
                 {isEditCharactersOpen ? (
                   <input
                     className="characters__editRange"
                     type="text"
                     value={editPersonalCharacters.name}
-                    onChange={(e) =>
+                    onChange={e =>
                       setEditPersonalCharacters({
                         ...editPersonalCharacters,
                         name: e.target.value,
@@ -67,16 +67,16 @@ const DescripPage = () => {
                   />
                 ) : (
                   editPersonalCharacters.name
-                )}{" "}
+                )}
               </li>
               <li>
-                Age:{" "}
+                Age:&nbsp;
                 {isEditCharactersOpen ? (
                   <input
                     className="characters__editRange"
                     type="text"
                     value={editPersonalCharacters.age}
-                    onChange={(e) =>
+                    onChange={e =>
                       setEditPersonalCharacters({
                         ...editPersonalCharacters,
                         age: Number(e.target.value),
@@ -85,16 +85,16 @@ const DescripPage = () => {
                   />
                 ) : (
                   editPersonalCharacters.age
-                )}{" "}
+                )}
               </li>
               <li>
-                Job:{" "}
+                Job:&nbsp;
                 {isEditCharactersOpen ? (
                   <input
                     className="characters__editRange"
                     type="text"
                     value={editPersonalCharacters.job}
-                    onChange={(e) =>
+                    onChange={e =>
                       setEditPersonalCharacters({
                         ...editPersonalCharacters,
                         job: e.target.value,
@@ -103,16 +103,16 @@ const DescripPage = () => {
                   />
                 ) : (
                   editPersonalCharacters.job
-                )}{" "}
+                )}
               </li>
               <li>
-                Gender:{" "}
+                Gender:&nbsp;
                 {isEditCharactersOpen ? (
                   <input
                     className="characters__editRange"
                     type="text"
                     value={editPersonalCharacters.gender}
-                    onChange={(e) =>
+                    onChange={e =>
                       setEditPersonalCharacters({
                         ...editPersonalCharacters,
                         gender: e.target.value,
@@ -121,16 +121,16 @@ const DescripPage = () => {
                   />
                 ) : (
                   editPersonalCharacters.gender
-                )}{" "}
+                )}
               </li>
               <li>
-                Location:{" "}
+                Location:&nbsp;
                 {isEditCharactersOpen ? (
                   <input
                     className="characters__editRange"
                     type="text"
                     value={editPersonalCharacters.location}
-                    onChange={(e) =>
+                    onChange={e =>
                       setEditPersonalCharacters({
                         ...editPersonalCharacters,
                         location: e.target.value,
@@ -139,7 +139,7 @@ const DescripPage = () => {
                   />
                 ) : (
                   editPersonalCharacters.location
-                )}{" "}
+                )}
               </li>
             </ul>
             {isEditCharactersOpen ? (

@@ -1,8 +1,12 @@
 @import "../../../assets/styles/globalStyles.scss";
-.characters__editRange {
-  width: 100px;
-  background-color: transparent;
-  color: $textContentColor;
-  border: 1px solid $bordersColor;
-  padding: 1px;
+.characters__item{
+  margin: 10px 0;
+  .characters__editRange {
+    width: 100px;
+    background-color: transparent;
+    color: $textContentColor;
+    border: 1px solid $bordersColor;
+    padding: 1px;
+  }
 }
+
