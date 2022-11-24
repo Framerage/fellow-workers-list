@@ -1,0 +1,79 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "settings": {
+    "react": {
+      "createClass": "createReactClass",
+      "pragma": "React",  
+      "fragment": "Fragment",  
+      "version": "detect", 
+      "flowVersion": "0.53" 
+    }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.js", "**/*.tsx", "**/*.jsx"]
+    }
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json",
+    "tsconfigRootDir": "./"
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "rules": {
+    "quotes": [
+      2,
+      "double",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "@typescript-eslint/quotes": [
+      "error",
+      "double",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "react/jsx-uses-react": ["warn"],
+    "react/react-in-jsx-scope": ["off"],
+    "react/jsx-props-no-spreading": ["off"],
+    "react/jsx-filename-extension": [
+      1,
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ],
+    "no-shadow": "off",
+    "no-alert": "off",
+    "no-param-reassign": "off",
+    "no-restricted-exports": "off",
+    "no-new": "off",
+    "no-else-return": ["error", { "allowElseIf": false }],
+    "no-promise-executor-return": "off",
+    "consistent-return": "off",
+    "import/no-unresolved": "off",
+    "import/no-named-as-default": 0,
+    "import/no-cycle": 0,
+    "import/no-unused-modules": 0,
+    "import/no-deprecated": 0,
+    "react-hooks/rules-of-hooks": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "indent": "off",
+    "no-extra-boolean-cast": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/ban-types": "off"
+  }
+}

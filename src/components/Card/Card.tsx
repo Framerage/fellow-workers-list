@@ -1,10 +1,10 @@
-import React, { useCallback, useState } from "react";
+import React, {useCallback, useState} from "react";
 import "./card.scss";
 import EditBtn from "components/UI/EditBtn/EditBtn";
 import avatarMan from "../../assets/images/avatar-man.png";
 import avatarWoman from "../../assets/images/avatar-woman.png";
-import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
+import {useNavigate} from "react-router-dom";
+import {useCookies} from "react-cookie";
 
 type CardProps = {
   removePerson: Function;
@@ -16,7 +16,7 @@ type CardProps = {
   job: string;
   gender: string;
 };
-function Card({ removePerson, editPersonCharacters, ...props }: CardProps) {
+function Card({removePerson, editPersonCharacters, ...props}: CardProps) {
   const navigate = useNavigate();
   const [cookies, setCookies] = useCookies(["choosedPerson"]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,15 +28,15 @@ function Card({ removePerson, editPersonCharacters, ...props }: CardProps) {
 
   const followingToDescripPage = (persId: number) => {
     setCookies("choosedPerson", `${persId}`);
-    navigate(`/:${persId}`);
+    navigate(`/:${cookies.choosedPerson}`);
   };
   const editPerson = useCallback(
     (params: {}) => {
-      editPersonCharacters({ ...params, id: props.id });
+      editPersonCharacters({...params, id: props.id});
       setIsMenuOpen(false);
       setIsEditActive(false);
     },
-    [isMenuOpen, isEditActive]
+    [props.id, editPersonCharacters],
   );
   return (
     <div className="personCard">
@@ -56,7 +56,7 @@ function Card({ removePerson, editPersonCharacters, ...props }: CardProps) {
           className={
             isEditActive ? "avatar__nameEdit" : "avatar__nameEdit vision"
           }
-          onChange={(e) =>
+          onChange={e =>
             setEditCharacters({
               ...editCharacters,
               name: e.target.value,
@@ -108,7 +108,7 @@ function Card({ removePerson, editPersonCharacters, ...props }: CardProps) {
                 value={editCharacters.age}
                 className="descrip__ageEdit"
                 type="text"
-                onChange={(e) =>
+                onChange={e =>
                   setEditCharacters({
                     ...editCharacters,
                     age: Number(e.target.value),
