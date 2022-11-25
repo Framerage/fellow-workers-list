@@ -1,146 +1,85 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import "./descripPage.scss";
 import avatarMan from "../../assets/images/avatar-man.png";
 import avatarWoman from "../../assets/images/avatar-woman.png";
-import { useDispatch, useSelector } from "react-redux";
-import { selectPersonList } from "store/personList/selectors";
-import { useCookies } from "react-cookie";
-import { AppDispatch, PersonListProps } from "types/appTypes";
+import {useDispatch, useSelector} from "react-redux";
+import {selectPersonList} from "store/personList/selectors";
+import {useCookies} from "react-cookie";
+import {AppDispatch, PersonListProps} from "types/appTypes";
 import EditArea from "components/UI/EditArea/EditArea";
 import EditBtn from "components/UI/EditBtn/EditBtn";
-import { editPersonParams } from "utils/helpers/helpers";
-import { editPersonMainCharacters } from "store/personList/actions";
+import {editPersonParams} from "utils/helpers/helpers";
+import {editPersonMainCharacters} from "store/personList/actions";
+import CharacterPoint from "components/UI/CharacterPoint/CharacterPoint";
+
 const DescripPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [cookies] = useCookies(["choosedPerson"]);
   const gettedPersonList = useSelector(selectPersonList);
   const gettedPersonInfo = gettedPersonList.filter(
-    (el) => el.id === Number(cookies.choosedPerson)
+    el => el.id === Number(cookies.choosedPerson),
   );
   const [personInfo, setPersonInfo] =
     useState<PersonListProps[]>(gettedPersonInfo);
   const [isEditCharactersOpen, setIsEditCharactersOpen] = useState(false);
-  const [editPersonalCharacters, setEditPersonalCharacters] = useState({
-    name: gettedPersonInfo[0].name,
-    age: gettedPersonInfo[0].age,
-    job: gettedPersonInfo[0].job,
-    location: gettedPersonInfo[0].location,
-    gender: gettedPersonInfo[0].gender,
-  });
+  const [editCharacters, setEditCharacters] = useState(gettedPersonInfo[0]);
+  const descripEntries = Object.entries(editCharacters);
+  const characterValues = descripEntries.filter(
+    el => el[0] !== "history" && el[0] !== "comments" && el[0] !== "id",
+  );
+  const extraCharacterValues = descripEntries.filter(
+    el => el[0] === "history" || el[0] === "comments",
+  );
 
   const editPersonalParams = (info: PersonListProps) => {
     setPersonInfo(editPersonParams(gettedPersonList, info));
     dispatch(
-      editPersonMainCharacters(editPersonParams(gettedPersonList, info))
+      editPersonMainCharacters(editPersonParams(gettedPersonList, info)),
     );
     setIsEditCharactersOpen(false);
   };
+
   return (
     <main className="descripContainer">
       <div className="container__descripPage">
         <div className="descripPage__photo">
           <img
-            src={
-              editPersonalCharacters.gender === "woman"
-                ? avatarWoman
-                : avatarMan
-            }
+            src={editCharacters.gender === "woman" ? avatarWoman : avatarMan}
             alt="personal_photo"
           />
         </div>
         <div className="descripPage__personalDescrip">
           <div className="personalDescrip__characters">
             <ul>
-              <li>
-                Name:{" "}
+              {characterValues.map(characterName => (
+                <CharacterPoint
+                  key={characterName[0]}
+                  page="descrip"
+                  param={characterName[1]}
+                  paramName={characterName[0]}
+                  editCharacters={editCharacters}
+                  setEditCharacters={setEditCharacters}
+                  isEditActive={isEditCharactersOpen}
+                />
+              ))}
+              {/* <li>
+                Name:&nbsp;
                 {isEditCharactersOpen ? (
                   <input
                     className="characters__editRange"
                     type="text"
-                    value={editPersonalCharacters.name}
-                    onChange={(e) =>
-                      setEditPersonalCharacters({
-                        ...editPersonalCharacters,
+                    value={editCharacters.name}
+                    onChange={e =>
+                      setEditCharacters({
+                        ...editCharacters,
                         name: e.target.value,
                       })
                     }
                   />
                 ) : (
-                  editPersonalCharacters.name
-                )}{" "}
-              </li>
-              <li>
-                Age:{" "}
-                {isEditCharactersOpen ? (
-                  <input
-                    className="characters__editRange"
-                    type="text"
-                    value={editPersonalCharacters.age}
-                    onChange={(e) =>
-                      setEditPersonalCharacters({
-                        ...editPersonalCharacters,
-                        age: Number(e.target.value),
-                      })
-                    }
-                  />
-                ) : (
-                  editPersonalCharacters.age
-                )}{" "}
-              </li>
-              <li>
-                Job:{" "}
-                {isEditCharactersOpen ? (
-                  <input
-                    className="characters__editRange"
-                    type="text"
-                    value={editPersonalCharacters.job}
-                    onChange={(e) =>
-                      setEditPersonalCharacters({
-                        ...editPersonalCharacters,
-                        job: e.target.value,
-                      })
-                    }
-                  />
-                ) : (
-                  editPersonalCharacters.job
-                )}{" "}
-              </li>
-              <li>
-                Gender:{" "}
-                {isEditCharactersOpen ? (
-                  <input
-                    className="characters__editRange"
-                    type="text"
-                    value={editPersonalCharacters.gender}
-                    onChange={(e) =>
-                      setEditPersonalCharacters({
-                        ...editPersonalCharacters,
-                        gender: e.target.value,
-                      })
-                    }
-                  />
-                ) : (
-                  editPersonalCharacters.gender
-                )}{" "}
-              </li>
-              <li>
-                Location:{" "}
-                {isEditCharactersOpen ? (
-                  <input
-                    className="characters__editRange"
-                    type="text"
-                    value={editPersonalCharacters.location}
-                    onChange={(e) =>
-                      setEditPersonalCharacters({
-                        ...editPersonalCharacters,
-                        location: e.target.value,
-                      })
-                    }
-                  />
-                ) : (
-                  editPersonalCharacters.location
-                )}{" "}
-              </li>
+                  editCharacters.name
+                )}
+              </li> */}
             </ul>
             {isEditCharactersOpen ? (
               <div className="characters__controlBtns">
@@ -148,7 +87,7 @@ const DescripPage = () => {
                   className="activeBtns__controlBtn"
                   onClick={() =>
                     editPersonalParams({
-                      ...editPersonalCharacters,
+                      ...editCharacters,
                       id: personInfo[0].id,
                     })
                   }
@@ -166,8 +105,21 @@ const DescripPage = () => {
               <EditBtn onClick={() => setIsEditCharactersOpen(true)} />
             )}
           </div>
-          <EditArea text={"History of person"} />
-          <EditArea text={"Some text"} />
+          {extraCharacterValues.map(param => (
+            <EditArea
+              key={param[0]}
+              textName={param[0]}
+              text={String(param[1])}
+              editCharacters={editCharacters}
+              setEditCharacters={setEditCharacters}
+              sentChanges={() =>
+                editPersonalParams({
+                  ...editCharacters,
+                  id: personInfo[0].id,
+                })
+              }
+            />
+          ))}
         </div>
       </div>
     </main>

@@ -6,5 +6,7 @@ export type PersonListProps = {
   location: string;
   job: string;
   gender: string;
+  history: string;
+  comments: string;
 };
 export type AppDispatch = typeof store.dispatch;

@@ -1,0 +1,23 @@
+@import "assets/styles/globalStyles.scss";
+
+.activeBtn__deletedBtn {
+    position: relative;
+    width: 25px;
+    height: 25px;
+    border: 1px solid $bordersColor;
+    border-radius: 13px;
+    color: $textContentColor;
+    font-size: 1.2em;
+    cursor: pointer;
+    background-color: transparent;
+    margin-top: 5px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    padding-left: 7px;
+    &:hover {
+      box-shadow: 0 0 10px 2px $themeTsColorSelection;
+    }
+
+  }

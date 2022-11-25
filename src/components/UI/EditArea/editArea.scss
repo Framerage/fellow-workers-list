@@ -1,10 +1,14 @@
-@import "../../../assets/styles/globalStyles.scss";
+@import "assets/styles/globalStyles.scss";
 
 .personalDescrip__detailedDescrip {
   margin: 5px;
   display: flex;
   justify-content: space-between;
   padding: 10px;
+  .detailedDescrip{
+    display: flex;
+    flex-direction: column;
+  }
 }
 .personalDescrip__editDetailedDescrip {
   display: flex;
@@ -12,13 +16,19 @@
   height: 100px !important;
 
   .editDetailedDescrip__textArea {
-    color: $textContentColor;
-    padding: 5px;
-    text-align: start;
     width: 90% !important;
     height: 100px !important;
-    background-color: transparent;
+    display: flex;
+    flex-direction: column;
     border: 1px solid $bordersColor;
+    textarea{
+      padding: 5px;
+      text-align: start;
+    font-size: 1em;
+    width: 150px;
+    max-width: 745px !important;
+    height: 90% !important;
+    }
   }
   .editDetailedDescrip__activeBtns {
     display: flex;

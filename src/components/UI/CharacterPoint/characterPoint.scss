@@ -1,8 +1,16 @@
 @import "../../../assets/styles/globalStyles.scss";
-.characters__editRange {
-  width: 100px;
-  background-color: transparent;
-  color: $textContentColor;
-  border: 1px solid $bordersColor;
-  padding: 1px;
+.characters__item{
+  margin-bottom: 10px;
+  list-style-type: none;
+  .characters__editRange {
+    width: 200px;
+    background-color: transparent;
+    color: $textContentColor;
+    border: 1px solid $bordersColor;
+    padding: 1px;
+  }
+  .cardEdit{
+    width: 100px;
+  }
 }
+

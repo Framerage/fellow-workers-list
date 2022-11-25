@@ -6,7 +6,6 @@
   grid-template-rows: minmax(155px, auto);
   background: linear-gradient(to bottom, $themeBsColor, $bg 96%, transparent);
   border-radius: 25px 25px 0 0;
-  cursor: pointer;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -16,8 +15,23 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 26%;
+    cursor: pointer;
     &:active {
       transform: scale(0.95);
+    }
+  }
+  .header__outline{
+    display: flex;
+    justify-content: center;
+    .themeColorBlock{
+      width: 30px;
+      height: 10px;
+      margin: 2px 5px;
+      transition: 0.2s;
+      cursor: pointer;
+      &:hover{
+        box-shadow: 0 0 5px white;
+      }
     }
   }
 }

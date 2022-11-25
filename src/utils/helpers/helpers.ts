@@ -1,10 +1,10 @@
-import { PersonListProps } from "types/appTypes";
+import {PersonListProps} from "types/appTypes";
 
 export const editPersonParams = (
   personList: PersonListProps[],
-  params: PersonListProps
+  params: PersonListProps,
 ) => {
-  return personList.map((item) => {
+  return personList.map(item => {
     if (item.id === params.id) {
       return {
         ...item,
@@ -13,8 +13,22 @@ export const editPersonParams = (
         name: params.name ? params.name : item.name,
         job: params.job ? params.job : item.job,
         location: params.location ? params.location : item.location,
+        history: params.history ? params.history : item.history,
+        comments: params.comments ? params.comments : item.comments,
       };
     }
     return item;
   });
+};
+
+export const editWordFirstSymbolToUpperCase = (text: string) => {
+  return text[0].toUpperCase() + text.slice(1);
+};
+export const getObjectValues = (obj: {}, params: any[]) => {
+  return Object.values(obj).filter(
+    el => el && el === params.map(param => param),
+  );
+};
+export const getObjectKeys = (obj: {}, params: string[]) => {
+  return Object.values(obj).filter(el => el !== params.map(param => param));
 };

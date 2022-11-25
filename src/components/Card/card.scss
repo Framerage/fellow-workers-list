@@ -18,26 +18,12 @@
     flex-direction: column;
     align-items: center;
     padding: 5px;
-    .avatar__name {
-      padding: 10px;
-    }
-    .avatar__nameEdit {
-      width: 150px;
-      height: 15px;
-      color: $textContentColor;
-      background-color: transparent;
-      border: 1px solid $bordersColor;
-      border-radius: 3px;
-      padding: 10px;
-      margin: 5px 0;
-    }
-    .vision {
-      display: none;
-    }
     img {
       width: 150px;
       height: 150px;
       padding: 5px;
+      border-radius: 75px;
+      background-color: rgb(158, 139, 243);
       cursor: pointer;
       transition: 0.2s;
       &:active {
@@ -49,11 +35,11 @@
     margin: 5px;
     padding: 10px;
     position: relative;
-    div {
+    .descrip__Items {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      span {
+      .descrip__Edit {
         font-size: 1.5em;
         display: flex;
         justify-content: space-between;
@@ -90,7 +76,6 @@
           box-shadow: 0 0 10px 2px $themeTsColorSelection;
         }
       }
-
       .descrip__activeBtns {
         display: flex;
         flex-direction: column;
@@ -98,45 +83,6 @@
         position: absolute;
         top: 15px;
         right: 10px;
-        .activeBtn__edit {
-          width: 25px;
-          height: 25px;
-          border: 1px solid $bordersColor;
-          border-radius: 13px;
-          color: $textContentColor;
-          font-size: 1.5em;
-          display: flex;
-          justify-content: center;
-          align-content: center;
-          background-image: url(../../assets/images/editBtn.png);
-          background-repeat: no-repeat;
-          background-size: cover;
-          background-position: center center;
-          cursor: pointer;
-          &:hover {
-            box-shadow: 0 0 10px 2px $themeTsColorSelection;
-          }
-        }
-        .activeBtn__delete {
-          width: 25px;
-          height: 25px;
-          border: 1px solid $bordersColor;
-          border-radius: 13px;
-          color: $textContentColor;
-          font-size: 1.2em;
-          display: flex;
-          justify-content: center;
-          align-content: center;
-          cursor: pointer;
-          background-color: transparent;
-          margin-top: 5px;
-          &:hover {
-            box-shadow: 0 0 10px 2px $themeTsColorSelection;
-          }
-        }
-      }
-      .vision {
-        display: none;
       }
     }
     ul {
@@ -147,9 +93,6 @@
         border-radius: 3px;
         padding: 2px;
         color: $textContentColor;
-      }
-      li {
-        list-style-type: none;
       }
     }
   }
