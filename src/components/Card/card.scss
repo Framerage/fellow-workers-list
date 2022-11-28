@@ -1,7 +1,7 @@
 @import "../../assets/styles/globalStyles.scss";
 .personCard {
   width: 350px;
-  min-height: 200px;
+  height: 220px;
   border: 1px solid $bordersColor;
   border-radius: 25px;
   display: grid;
@@ -32,7 +32,6 @@
       box-shadow: 0 0 5px white;
     }
   }
-
   .personCard__avatar {
     margin: 5px;
     display: flex;
