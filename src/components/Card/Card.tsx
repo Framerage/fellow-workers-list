@@ -1,17 +1,17 @@
-import React, {useCallback, useState} from "react";
+import React, { useCallback, useState } from "react";
 import "./card.scss";
 import EditBtn from "components/UI/EditBtn/EditBtn";
 import avatarMan from "../../assets/images/avatar-man.png";
 import avatarWoman from "../../assets/images/avatar-woman.png";
-import {useNavigate} from "react-router-dom";
-import {useCookies} from "react-cookie";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import CharacterPoint from "components/UI/CharacterPoint/CharacterPoint";
 import DeleteBtn from "components/UI/DeleteBtn";
-import {getObjectValues} from "utils/helpers/helpers";
+import { getObjectValues } from "utils/helpers/helpers";
 
 type CardProps = {
   removePerson: Function;
-  editPersonCharacters: Function;
+  editPersonMainCharacters: Function;
   name: string;
   age: number;
   id: number;
@@ -21,7 +21,7 @@ type CardProps = {
   history: string;
   comments: string;
 };
-function Card({removePerson, editPersonCharacters, ...props}: CardProps) {
+function Card({ removePerson, editPersonMainCharacters, ...props }: CardProps) {
   const navigate = useNavigate();
   const [cookies, setCookies] = useCookies(["choosedPerson"]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -43,15 +43,16 @@ function Card({removePerson, editPersonCharacters, ...props}: CardProps) {
   };
   const editPerson = useCallback(
     (params: {}) => {
-      editPersonCharacters({...params, id: props.id});
+      editPersonMainCharacters({ ...params, id: props.id });
       setIsMenuOpen(false);
       setIsEditActive(false);
     },
-    [props.id, editPersonCharacters],
+    [props.id, editPersonMainCharacters]
   );
 
   const paramsName = Object.keys(editCharacters).filter(
-    el => el !== "name" && el !== "id" && el !== "history" && el !== "comments",
+    (el) =>
+      el !== "name" && el !== "id" && el !== "history" && el !== "comments"
   );
   // const paramsName=getObjectKeys(editCharacters,["name", "id", "history", "comments"])
   const paramsValue = getObjectValues(editCharacters, [
@@ -61,15 +62,21 @@ function Card({removePerson, editPersonCharacters, ...props}: CardProps) {
     props.comments,
   ]);
   const propsValue = Object.values(props).filter(
-    el =>
+    (el) =>
       el !== props.name &&
       el !== props.id &&
       el !== props.history &&
-      el !== props.comments,
+      el !== props.comments
   );
 
+  const [isCardVisible, setIsCardVisible] = useState(true);
   return (
-    <div className="personCard">
+    <div className={isCardVisible ? "personCard" : "personCard cardAnimation"}>
+      <div
+        className="personCard__cardVisibility"
+        onClick={() => setIsCardVisible(!isCardVisible)}
+      ></div>
+
       <div className="personCard__avatar">
         {" "}
         <img
@@ -101,7 +108,6 @@ function Card({removePerson, editPersonCharacters, ...props}: CardProps) {
           {isMenuOpen ? (
             <div className="descrip__activeBtns">
               <EditBtn onClick={() => setIsEditActive(true)} />
-
               <DeleteBtn deleteItem={() => removePerson(props.id)} />
             </div>
           ) : (

@@ -1,6 +1,6 @@
-import React, {useState} from "react";
-import {PersonListProps} from "types/appTypes";
-import {editWordFirstSymbolToUpperCase} from "utils/helpers/helpers";
+import React, { useState } from "react";
+import { PersonListProps } from "types/appTypes";
+import { editWordFirstSymbolToUpperCase } from "utils/helpers/helpers";
 import "./characterPoint.scss";
 type PointProps = {
   param: any;
@@ -23,7 +23,7 @@ const CharacterPoint = ({
     setParamsValue(e.target.value);
     setEditCharacters({
       ...editCharacters,
-      [`${Object.keys(editCharacters).find(el => el === paramName)}`]:
+      [`${Object.keys(editCharacters).find((el) => el === paramName)}`]:
         paramName === "age" ? Number(e.target.value) : e.target.value,
     });
   };
@@ -39,10 +39,10 @@ const CharacterPoint = ({
           }
           type="text"
           value={paramsValue}
-          onChange={e => changeParam(e)}
+          onChange={(e) => changeParam(e)}
         />
       ) : (
-        param
+        <span className="item__text">{param}</span>
       )}
     </li>
   );

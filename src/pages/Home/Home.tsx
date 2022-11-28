@@ -1,15 +1,15 @@
 import Card from "components/Card/Card";
-import React, {useCallback, useEffect, useState} from "react";
-import {useCookies} from "react-cookie";
-import {useDispatch, useSelector} from "react-redux";
+import React, { useCallback, useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
+import { useDispatch, useSelector } from "react-redux";
 import {
   deletePerson,
-  editPersonMainCharacters,
+  editPersonCharacters,
   fetchPersonList,
 } from "store/personList/actions";
-import {selectPersonList} from "store/personList/selectors";
-import {AppDispatch, PersonListProps} from "types/appTypes";
-import {editPersonParams} from "utils/helpers/helpers";
+import { selectPersonList } from "store/personList/selectors";
+import { AppDispatch, PersonListProps } from "types/appTypes";
+import { editPersonParams } from "utils/helpers/helpers";
 import "./home.scss";
 
 const Home = () => {
@@ -23,10 +23,10 @@ const Home = () => {
     cookies.choosedPerson &&
       setPersonList([
         ...gettedList.filter(
-          (el: {id: number}) => el.id === Number(cookies.choosedPerson),
+          (el: { id: number }) => el.id === Number(cookies.choosedPerson)
         ),
         ...gettedList.filter(
-          (el: {id: number}) => el.id !== Number(cookies.choosedPerson),
+          (el: { id: number }) => el.id !== Number(cookies.choosedPerson)
         ),
       ]);
   }, [cookies.choosedPerson, gettedList]);
@@ -48,31 +48,35 @@ const Home = () => {
 
   const removePerson = useCallback(
     (persId: number) => {
-      setPersonList(gettedList.filter((el: {id: number}) => el.id !== persId));
+      setPersonList(
+        gettedList.filter((el: { id: number }) => el.id !== persId)
+      );
       dispatch(
-        deletePerson(gettedList.filter((el: {id: number}) => el.id !== persId)),
+        deletePerson(
+          gettedList.filter((el: { id: number }) => el.id !== persId)
+        )
       );
     },
-    [gettedList, dispatch],
+    [gettedList, dispatch]
   );
 
-  const editPersonCharacters = useCallback(
+  const editPersonMainCharacters = useCallback(
     (info: PersonListProps) => {
       setPersonList(editPersonParams(gettedList, info));
-      dispatch(editPersonMainCharacters(editPersonParams(gettedList, info)));
+      dispatch(editPersonCharacters(editPersonParams(gettedList, info)));
     },
-    [gettedList, dispatch],
+    [gettedList, dispatch]
   );
   return (
     <main className="container">
       <div className="container__header">Fellow workers list</div>
       <div className="container__cards">
-        {personList.map(person => (
+        {personList.map((person) => (
           <Card
             key={`${person.id}`}
             {...person}
             removePerson={removePerson}
-            editPersonCharacters={editPersonCharacters}
+            editPersonMainCharacters={editPersonMainCharacters}
           />
         ))}
       </div>

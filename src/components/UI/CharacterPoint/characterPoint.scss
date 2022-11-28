@@ -1,5 +1,5 @@
 @import "../../../assets/styles/globalStyles.scss";
-.characters__item{
+.characters__item {
   margin-bottom: 10px;
   list-style-type: none;
   .characters__editRange {
@@ -9,8 +9,10 @@
     border: 1px solid $bordersColor;
     padding: 1px;
   }
-  .cardEdit{
+  .cardEdit {
     width: 100px;
   }
+  .item__text {
+    color: $textContentColor;
+  }
 }
-

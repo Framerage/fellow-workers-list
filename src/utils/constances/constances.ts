@@ -8,4 +8,8 @@ export const THEMES_COLORS = [
   "blue",
   "green",
   "greenyellow",
+  "lightpink",
+  "pink",
+  "violet",
+  "blueviolet",
 ];

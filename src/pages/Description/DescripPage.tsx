@@ -1,15 +1,15 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./descripPage.scss";
 import avatarMan from "../../assets/images/avatar-man.png";
 import avatarWoman from "../../assets/images/avatar-woman.png";
-import {useDispatch, useSelector} from "react-redux";
-import {selectPersonList} from "store/personList/selectors";
-import {useCookies} from "react-cookie";
-import {AppDispatch, PersonListProps} from "types/appTypes";
+import { useDispatch, useSelector } from "react-redux";
+import { selectPersonList } from "store/personList/selectors";
+import { useCookies } from "react-cookie";
+import { AppDispatch, PersonListProps } from "types/appTypes";
 import EditArea from "components/UI/EditArea/EditArea";
 import EditBtn from "components/UI/EditBtn/EditBtn";
-import {editPersonParams} from "utils/helpers/helpers";
-import {editPersonMainCharacters} from "store/personList/actions";
+import { editPersonParams } from "utils/helpers/helpers";
+import { editPersonCharacters } from "store/personList/actions";
 import CharacterPoint from "components/UI/CharacterPoint/CharacterPoint";
 
 const DescripPage = () => {
@@ -17,7 +17,7 @@ const DescripPage = () => {
   const [cookies] = useCookies(["choosedPerson"]);
   const gettedPersonList = useSelector(selectPersonList);
   const gettedPersonInfo = gettedPersonList.filter(
-    el => el.id === Number(cookies.choosedPerson),
+    (el) => el.id === Number(cookies.choosedPerson)
   );
   const [personInfo, setPersonInfo] =
     useState<PersonListProps[]>(gettedPersonInfo);
@@ -25,17 +25,15 @@ const DescripPage = () => {
   const [editCharacters, setEditCharacters] = useState(gettedPersonInfo[0]);
   const descripEntries = Object.entries(editCharacters);
   const characterValues = descripEntries.filter(
-    el => el[0] !== "history" && el[0] !== "comments" && el[0] !== "id",
+    (el) => el[0] !== "history" && el[0] !== "comments" && el[0] !== "id"
   );
   const extraCharacterValues = descripEntries.filter(
-    el => el[0] === "history" || el[0] === "comments",
+    (el) => el[0] === "history" || el[0] === "comments"
   );
 
   const editPersonalParams = (info: PersonListProps) => {
     setPersonInfo(editPersonParams(gettedPersonList, info));
-    dispatch(
-      editPersonMainCharacters(editPersonParams(gettedPersonList, info)),
-    );
+    dispatch(editPersonCharacters(editPersonParams(gettedPersonList, info)));
     setIsEditCharactersOpen(false);
   };
 
@@ -51,7 +49,7 @@ const DescripPage = () => {
         <div className="descripPage__personalDescrip">
           <div className="personalDescrip__characters">
             <ul>
-              {characterValues.map(characterName => (
+              {characterValues.map((characterName) => (
                 <CharacterPoint
                   key={characterName[0]}
                   page="descrip"
@@ -105,7 +103,7 @@ const DescripPage = () => {
               <EditBtn onClick={() => setIsEditCharactersOpen(true)} />
             )}
           </div>
-          {extraCharacterValues.map(param => (
+          {extraCharacterValues.map((param) => (
             <EditArea
               key={param[0]}
               textName={param[0]}

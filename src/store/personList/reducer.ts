@@ -1,9 +1,5 @@
 import { createReducer, PayloadAction } from "@reduxjs/toolkit";
-import {
-  deletePerson,
-  editPersonMainCharacters,
-  fetchPersonList,
-} from "./actions";
+import { deletePerson, editPersonCharacters, fetchPersonList } from "./actions";
 import { ListStateProps } from "./types";
 
 const initialStateList: ListStateProps = {
@@ -31,7 +27,7 @@ export default createReducer(initialStateList, {
   ) => {
     state.personList = action.payload;
   },
-  [editPersonMainCharacters.type]: (
+  [editPersonCharacters.type]: (
     state,
     action: PayloadAction<ListStateProps["personList"]>
   ) => {

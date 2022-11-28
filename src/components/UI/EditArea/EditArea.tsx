@@ -1,6 +1,6 @@
-import React, {useState} from "react";
-import {PersonListProps} from "types/appTypes";
-import {editWordFirstSymbolToUpperCase} from "utils/helpers/helpers";
+import React, { useState } from "react";
+import { PersonListProps } from "types/appTypes";
+import { editWordFirstSymbolToUpperCase } from "utils/helpers/helpers";
 import EditBtn from "../EditBtn/EditBtn";
 import "./editArea.scss";
 type EditAreaProps = {
@@ -24,7 +24,7 @@ const EditArea = ({
     setSpecDescrip(e.target.value);
     setEditCharacters({
       ...editCharacters,
-      [`${Object.keys(editCharacters).find(el => el === textName)}`]:
+      [`${Object.keys(editCharacters).find((el) => el === textName)}`]:
         e.target.value,
     });
   };
@@ -36,7 +36,7 @@ const EditArea = ({
             <span>
               {textName ? editWordFirstSymbolToUpperCase(textName) : ""}
             </span>
-            <textarea value={specDescrip} onChange={e => changeParam(e)} />
+            <textarea value={specDescrip} onChange={(e) => changeParam(e)} />
           </div>
 
           <div className="editDetailedDescrip__activeBtns">
@@ -61,17 +61,17 @@ const EditArea = ({
           </div>
         </div>
       ) : (
-        <div className="personalDescrip__detailedDescrip">
-          <div className="detailedDescrip">
-            <span>
-              {textName ? editWordFirstSymbolToUpperCase(textName) : ""}
-            </span>
-            <span>
-              {specDescrip ? editWordFirstSymbolToUpperCase(specDescrip) : ""}
-            </span>
+        textName && (
+          <div className="personalDescrip__detailedDescrip">
+            <div className="detailedDescrip">
+              <span>{editWordFirstSymbolToUpperCase(textName)}</span>
+              <span>
+                {specDescrip ? editWordFirstSymbolToUpperCase(specDescrip) : ""}
+              </span>
+            </div>
+            <EditBtn onClick={() => setIsDetailedEditOpen(true)} />
           </div>
-          <EditBtn onClick={() => setIsDetailedEditOpen(true)} />
-        </div>
+        )
       )}
     </>
   );

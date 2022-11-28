@@ -4,7 +4,7 @@ import { PersonListProps } from "types/appTypes";
 
 export const deletePerson =
   createAction<PersonListProps[]>("LIST/deletePerson");
-export const editPersonMainCharacters = createAction<PersonListProps[]>(
+export const editPersonCharacters = createAction<PersonListProps[]>(
   "LIST/editPersonMainCharacters"
 );
 export const fetchPersonList = createAsyncThunk(
