@@ -1,7 +1,7 @@
 @import "../../assets/styles/globalStyles.scss";
 .personCard {
   width: 350px;
-  height: 200px;
+  min-height: 200px;
   border: 1px solid $bordersColor;
   border-radius: 25px;
   display: grid;
@@ -43,6 +43,7 @@
       width: 150px;
       height: 150px;
       padding: 5px;
+      margin-bottom: 10px;
       border-radius: 75px;
       background-color: rgb(158, 139, 243);
       cursor: pointer;
