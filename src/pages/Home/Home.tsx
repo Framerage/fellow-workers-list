@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  deletePerson,
+  deletePersonFromList,
   editPersonCharacters,
   fetchPersonList,
 } from "store/personList/actions";
@@ -52,7 +52,7 @@ const Home = () => {
         gettedList.filter((el: { id: number }) => el.id !== persId)
       );
       dispatch(
-        deletePerson(
+        deletePersonFromList(
           gettedList.filter((el: { id: number }) => el.id !== persId)
         )
       );

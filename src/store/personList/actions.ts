@@ -1,13 +1,24 @@
-import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { getFetchedPersonList } from "api/api";
-import { PersonListProps } from "types/appTypes";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import {
+  deleteChoosedPersonFromList,
+  editChoosedPersonCharacters,
+  getFetchedPersonList,
+} from "api/api";
 
-export const deletePerson =
-  createAction<PersonListProps[]>("LIST/deletePerson");
-export const editPersonCharacters = createAction<PersonListProps[]>(
-  "LIST/editPersonMainCharacters"
-);
+// export const deletePersonFromList =
+//   createAction<PersonListProps[]>("LIST/deletePerson");
+// export const editPersonCharacters = createAction<PersonListProps[]>(
+//   "LIST/editPersonMainCharacters"
+// );
 export const fetchPersonList = createAsyncThunk(
   "LIST/fetchPersonList",
   getFetchedPersonList
+);
+export const editPersonCharacters = createAsyncThunk(
+  "LIST/editPersonMainCharacters",
+  editChoosedPersonCharacters
+);
+export const deletePersonFromList = createAsyncThunk(
+  "LIST/editPersonMainCharacters",
+  deleteChoosedPersonFromList
 );

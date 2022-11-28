@@ -9,8 +9,8 @@ import { AppDispatch, PersonListProps } from "types/appTypes";
 import EditArea from "components/UI/EditArea/EditArea";
 import EditBtn from "components/UI/EditBtn/EditBtn";
 import { editPersonParams } from "utils/helpers/helpers";
-import { editPersonCharacters } from "store/personList/actions";
 import CharacterPoint from "components/UI/CharacterPoint/CharacterPoint";
+import { editPersonCharacters } from "store/personList/actions";
 
 const DescripPage = () => {
   const dispatch = useDispatch<AppDispatch>();

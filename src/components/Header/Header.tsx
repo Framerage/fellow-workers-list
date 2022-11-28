@@ -13,9 +13,11 @@ const Header = () => {
   const navToHome = () => {
     navigate("/");
   };
+
   useEffect(() => {
     document.documentElement.style.setProperty("--themeColor", `${userTheme}`);
-  }, []);
+  }, [userTheme]);
+
   const changeTheme = (choosedColor: string) => {
     document.documentElement.style.setProperty(
       "--themeColor",
@@ -23,7 +25,6 @@ const Header = () => {
     );
     dispatch(changeUserTheme(choosedColor));
   };
-  // добавить приколюшку на светотемы
   return (
     <div className="header">
       <div className="header__logo" onClick={navToHome}></div>
