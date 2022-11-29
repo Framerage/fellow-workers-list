@@ -6,68 +6,40 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectPersonList} from "store/personList/selectors";
 import {useCookies} from "react-cookie";
 import {AppDispatch, PersonListProps} from "types/appTypes";
-import EditArea from "components/UI/EditArea/EditArea";
 import EditBtn from "components/UI/EditBtn/EditBtn";
 import {editPersonParams} from "utils/helpers/helpers";
 import CharacterPoint from "components/UI/CharacterPoint/CharacterPoint";
 import {editPersonCharacters} from "store/personList/actions";
+import ExtraCharactersField from "components/UI/ExtraCharactersField";
 
 const DescripPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [cookies] = useCookies(["choosedPerson"]);
   const gettedPersonList = useSelector(selectPersonList);
-  // const gettedPersonInfo = gettedPersonList.find(
-  //   el => el.id === Number(cookies.choosedPerson),
-  // );
+
   const getPersonInfo = useCallback(() => {
-    if (!!gettedPersonList === true) {
+    if (gettedPersonList) {
       return gettedPersonList.filter(
         el => el.id === Number(cookies.choosedPerson),
       )[0];
     }
-    // else {
-    //   return
-    // {
-    //     name: "",
-    //     age: "",
-    //     id: 0,
-    //     location: "",
-    //     job: "",
-    //     gender: "",
-    //     history: "",
-    //     comment: "",
-    //   }
-    // }
+    // setEditCharacters(personInfo);
   }, [gettedPersonList]);
 
-  // console.log("1");
   // TODO: add function to useState ( personInfo)
+  // TODO: разобраться с прокидыванием пропсов, двухстороннее связывание
   const [personInfo, setPersonInfo] = useState<PersonListProps | any>(
     getPersonInfo(),
-    // ||    {
-    //   name: "",
-    //   age: "",
-    //   id: 0,
-    //   location: "",
-    //   job: "",
-    //   gender: "",
-    //   history: "",
-    //   comment: "",
-    // },
   );
   const [isEditCharactersOpen, setIsEditCharactersOpen] = useState(false);
-  const [editCharacters, setEditCharacters] = useState(personInfo);
-  const descripEntries = Object.entries(editCharacters);
+  // const [editCharacters, setEditCharacters] = useState(personInfo);
+  const [descripEntries] = useState(Object.entries(personInfo));
+  // console.log(descripEntries);
   const characterValues = descripEntries.filter(
-    el => el[0] !== "history" && el[0] !== "comments" && el[0] !== "id",
-  );
-  const test = descripEntries.filter(
     el => !["history", "comments", "id"].includes(el[0]),
   );
-  console.log(test);
-  // ['1', '2','3'].includes(el[0])
-  const extraCharacterValues = descripEntries.filter(
-    el => el[0] === "history" || el[0] === "comments",
+  const extraCharacterValues = descripEntries.filter(el =>
+    ["history", "comments"].includes(el[0]),
   );
 
   const editPersonalParams = (info: PersonListProps) => {
@@ -81,7 +53,7 @@ const DescripPage = () => {
       <div className="container__descripPage">
         <div className="descripPage__photo">
           <img
-            src={editCharacters.gender === "woman" ? avatarWoman : avatarMan}
+            src={personInfo.gender === "woman" ? avatarWoman : avatarMan}
             alt="personal_photo"
           />
         </div>
@@ -95,13 +67,11 @@ const DescripPage = () => {
                   param={characterName[1]}
                   paramName={characterName[0]}
                   onChange={(text: string) =>
-                    setEditCharacters({
-                      ...editCharacters,
+                    setPersonInfo({
+                      ...personInfo,
                       [characterName[0]]: text,
                     })
                   }
-                  // editCharacters={editCharacters}
-                  // setEditCharacters={setEditCharacters}
                   isEditActive={isEditCharactersOpen}
                 />
               ))}
@@ -112,7 +82,7 @@ const DescripPage = () => {
                   className="activeBtns__controlBtn"
                   onClick={() =>
                     editPersonalParams({
-                      ...editCharacters,
+                      ...personInfo,
                       id: personInfo.id,
                     })
                   }
@@ -131,15 +101,20 @@ const DescripPage = () => {
             )}
           </div>
           {extraCharacterValues.map(param => (
-            <EditArea
+            <ExtraCharactersField
               key={param[0]}
               textName={param[0]}
               text={String(param[1])}
-              editCharacters={editCharacters}
-              setEditCharacters={setEditCharacters}
+              changeParam={(text: string) => {
+                console.log(text, " text");
+                setPersonInfo({
+                  ...personInfo,
+                  [param[0]]: text,
+                });
+              }}
               sentChanges={() =>
                 editPersonalParams({
-                  ...editCharacters,
+                  ...personInfo,
                   id: personInfo.id,
                 })
               }

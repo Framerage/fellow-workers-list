@@ -23,7 +23,7 @@ const CharacterPoint = ({
         console.log("не одинаковые");
         onChange(paramsValue);
       }
-    }, 2000);
+    }, 500);
   }, [paramsValue]);
 
   return (

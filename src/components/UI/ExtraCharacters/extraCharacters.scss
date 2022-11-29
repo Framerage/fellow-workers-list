@@ -1,0 +1,10 @@
+.personalDescrip__detailedDescrip {
+    margin: 5px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    .detailedDescrip{
+      display: flex;
+      flex-direction: column;
+    }
+  }

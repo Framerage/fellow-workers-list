@@ -1,15 +1,5 @@
 @import "assets/styles/globalStyles.scss";
 
-.personalDescrip__detailedDescrip {
-  margin: 5px;
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  .detailedDescrip{
-    display: flex;
-    flex-direction: column;
-  }
-}
 .personalDescrip__editDetailedDescrip {
   display: flex;
   margin: 5px;
@@ -51,6 +41,7 @@
     box-shadow: 0 0 5px 5px $themeTsColorSelection;
   }
 }
-.vision {
-  display: none;
-}
+// .vision{
+//   display: none;
+// }
+

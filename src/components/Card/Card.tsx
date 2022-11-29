@@ -102,13 +102,15 @@ function Card({removePerson, editPersonMainCharacters, ...props}: CardProps) {
         <div className="descrip__Items">
           <span className="descrip__Edit">
             Descrip
-            <button
-              className={isEditActive ? "sentBtn" : "vision"}
-              type="button"
-              onClick={() => editPerson(editCharacters)}
-            >
-              OK
-            </button>
+            {isEditActive && (
+              <button
+                className="sentBtn"
+                type="button"
+                onClick={() => editPerson(editCharacters)}
+              >
+                OK
+              </button>
+            )}
           </span>
           {isMenuOpen ? (
             <div className="descrip__activeBtns">
