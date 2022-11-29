@@ -12,4 +12,5 @@ export const THEMES_COLORS = [
   "pink",
   "violet",
   "blueviolet",
+  "lightseagreen",
 ];

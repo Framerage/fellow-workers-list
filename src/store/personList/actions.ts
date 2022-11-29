@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import {createAsyncThunk} from "@reduxjs/toolkit";
 import {
   deleteChoosedPersonFromList,
   editChoosedPersonCharacters,
@@ -12,13 +12,13 @@ import {
 // );
 export const fetchPersonList = createAsyncThunk(
   "LIST/fetchPersonList",
-  getFetchedPersonList
+  getFetchedPersonList,
 );
 export const editPersonCharacters = createAsyncThunk(
   "LIST/editPersonMainCharacters",
-  editChoosedPersonCharacters
+  editChoosedPersonCharacters,
 );
 export const deletePersonFromList = createAsyncThunk(
-  "LIST/editPersonMainCharacters",
-  deleteChoosedPersonFromList
+  "LIST/deletePersonFromList",
+  deleteChoosedPersonFromList,
 );

@@ -1,5 +1,6 @@
-import { PersonListProps } from "types/appTypes";
+import {PersonListProps} from "types/appTypes";
 
 export type ListStateProps = {
   personList: PersonListProps[];
+  isDataFetched: boolean;
 };

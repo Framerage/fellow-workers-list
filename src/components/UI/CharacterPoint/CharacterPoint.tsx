@@ -1,32 +1,31 @@
-import React, { useState } from "react";
-import { PersonListProps } from "types/appTypes";
-import { editWordFirstSymbolToUpperCase } from "utils/helpers/helpers";
+import React, {useEffect, useState} from "react";
+import {editWordFirstSymbolToUpperCase} from "utils/helpers/helpers";
 import "./characterPoint.scss";
 type PointProps = {
   param: any;
   isEditActive: boolean;
   paramName: string;
-  setEditCharacters: Function;
-  editCharacters: PersonListProps;
   page: string;
+  onChange: Function;
 };
 const CharacterPoint = ({
   param,
   isEditActive,
   paramName,
-  setEditCharacters,
-  editCharacters,
   page,
+  onChange,
 }: PointProps) => {
   const [paramsValue, setParamsValue] = useState(param);
-  const changeParam = (e: any) => {
-    setParamsValue(e.target.value);
-    setEditCharacters({
-      ...editCharacters,
-      [`${Object.keys(editCharacters).find((el) => el === paramName)}`]:
-        paramName === "age" ? Number(e.target.value) : e.target.value,
-    });
-  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (param !== paramsValue) {
+        console.log("не одинаковые");
+        onChange(paramsValue);
+      }
+    }, 2000);
+  }, [paramsValue]);
+
   return (
     <li className="characters__item">
       {paramName ? editWordFirstSymbolToUpperCase(paramName) + ": " : ""}
@@ -37,9 +36,9 @@ const CharacterPoint = ({
               ? "characters__editRange"
               : "characters__editRange cardEdit"
           }
-          type="text"
+          type={"text"}
           value={paramsValue}
-          onChange={(e) => changeParam(e)}
+          onChange={e => setParamsValue(e.target.value)}
         />
       ) : (
         <span className="item__text">{param}</span>

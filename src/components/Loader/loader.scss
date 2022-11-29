@@ -1,0 +1,17 @@
+.loader{
+    .loader__animation{
+        width: 200px;
+        height: 200px;
+        border: 5px dashed lightseagreen;
+        border-radius: 100px;
+        animation: rotation 10s linear alternate-reverse infinite;
+    }
+    @keyframes rotation{
+        from{
+            transform: rotate(0deg) scale(1);
+        }
+        to{
+            transform: rotate(720deg) scale(0.2);
+        }
+    }
+}

@@ -1,7 +1,7 @@
 import store from "store/store";
 export type PersonListProps = {
   name: string;
-  age: number;
+  age: string;
   id: number;
   location: string;
   job: string;
