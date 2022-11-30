@@ -27,10 +27,10 @@ const Home = () => {
     cookies.choosedPerson &&
       setPersonList([
         ...gettedList.filter(
-          (el: {id: number}) => el.id === Number(cookies.choosedPerson),
+          (el: {id: string}) => el.id === cookies.choosedPerson,
         ),
         ...gettedList.filter(
-          (el: {id: number}) => el.id !== Number(cookies.choosedPerson),
+          (el: {id: string}) => el.id !== cookies.choosedPerson,
         ),
       ]);
   }, [cookies.choosedPerson, gettedList]);
@@ -48,11 +48,11 @@ const Home = () => {
   }, []);
 
   const removePerson = useCallback(
-    (persId: number) => {
-      setPersonList(gettedList.filter((el: {id: number}) => el.id !== persId));
+    (persId: string) => {
+      setPersonList(gettedList.filter((el: {id: string}) => el.id !== persId));
       dispatch(
         deletePersonFromList(
-          gettedList.filter((el: {id: number}) => el.id !== persId),
+          gettedList.filter((el: {id: string}) => el.id !== persId),
         ),
       );
     },
@@ -72,7 +72,7 @@ const Home = () => {
       <div className="container__cards">
         {isDataFetched ? (
           <Loader />
-        ) : (
+        ) : personList.length ? (
           personList.map(person => (
             <Card
               key={`${person.id}`}
@@ -81,6 +81,10 @@ const Home = () => {
               editPersonMainCharacters={editPersonMainCharacters}
             />
           ))
+        ) : (
+          <div className="container__empty">
+            <p>Empty</p>
+          </div>
         )}
       </div>
     </main>

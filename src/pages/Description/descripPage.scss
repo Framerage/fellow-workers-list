@@ -1,4 +1,4 @@
-@import "../../assets/styles/globalStyles.scss";
+@import "assets/styles/globalStyles.scss";
 .descripContainer {
   display: flex;
   justify-content: center;
@@ -28,24 +28,7 @@
       display: grid;
       grid-template-columns: 1fr;
       grid-template-rows: minmax(100px, 150px);
-      .personalDescrip__characters {
-        margin: 5px;
-        display: flex;
-        justify-content: space-between;
-        padding: 10px;
-        ul {
-          margin: 5px;
-          width: 90% !important;
-          li {
-            list-style-type: none;
-            margin-bottom: 5px;
-          }
-        }
-        .characters__controlBtns {
-          display: flex;
-          flex-direction: column;
-        }
-      }
+
     }
   }
 }

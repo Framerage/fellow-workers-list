@@ -32,6 +32,9 @@ export const getObjectValues = (obj: {}, params: any[]) => {
 export const getObjectKeys = (obj: {}, params: string[]) => {
   return Object.values(obj).filter(el => el !== params.map(param => param));
 };
+export const getObjectEntries = (obj: {}, params: string[]) => {
+  return Object.entries(obj).filter(el => params.includes(el[0]));
+};
 export const someDelay = async (num: number) => {
   await new Promise(resolve => setTimeout(resolve, num));
 };

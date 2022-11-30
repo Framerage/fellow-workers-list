@@ -1,0 +1,20 @@
+@import "assets/styles/globalStyles.scss";
+
+.characters__controlBtns {
+    display: flex;
+    flex-direction: column;
+  }
+  .activeBtns__controlBtn {
+    width: 25px;
+    height: 25px;
+    border-radius: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    transition: 0.2s;
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 0 5px 5px $themeTsColorSelection;
+    }
+  }

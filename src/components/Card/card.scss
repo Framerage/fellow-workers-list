@@ -1,7 +1,7 @@
-@import "../../assets/styles/globalStyles.scss";
+@import "assets/styles/globalStyles.scss";
 .personCard {
   width: 350px;
-  height: 220px;
+  height: 230px;
   border: 1px solid $bordersColor;
   border-radius: 25px;
   display: grid;
@@ -33,7 +33,7 @@
     }
   }
   .personCard__avatar {
-    margin: 5px;
+    margin: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;

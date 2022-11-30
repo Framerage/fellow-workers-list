@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {editWordFirstSymbolToUpperCase} from "utils/helpers/helpers";
 import "./characterPoint.scss";
 type PointProps = {
@@ -17,15 +17,6 @@ const CharacterPoint = ({
 }: PointProps) => {
   const [paramsValue, setParamsValue] = useState(param);
 
-  useEffect(() => {
-    setTimeout(() => {
-      if (param !== paramsValue) {
-        console.log("не одинаковые");
-        onChange(paramsValue);
-      }
-    }, 500);
-  }, [paramsValue]);
-
   return (
     <li className="characters__item">
       {paramName ? editWordFirstSymbolToUpperCase(paramName) + ": " : ""}
@@ -38,7 +29,10 @@ const CharacterPoint = ({
           }
           type={"text"}
           value={paramsValue}
-          onChange={e => setParamsValue(e.target.value)}
+          onChange={e => {
+            setParamsValue(e.target.value);
+            onChange(e.target.value);
+          }}
         />
       ) : (
         <span className="item__text">{param}</span>

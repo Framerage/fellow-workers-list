@@ -30,7 +30,7 @@ const EditExtraCharacters = ({
 
       <div className="editDetailedDescrip__activeBtns">
         <button
-          className="activeBtns__controlBtn"
+          className="activeBtns__controlAreaBtn"
           onClick={() => {
             sentChanges();
             closeEditArea();
@@ -39,7 +39,7 @@ const EditExtraCharacters = ({
           OK
         </button>
         <button
-          className="activeBtns__controlBtn"
+          className="activeBtns__controlAreaBtn"
           onClick={() => {
             closeEditArea();
             setSpecDescrip("");

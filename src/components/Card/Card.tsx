@@ -7,14 +7,15 @@ import {useNavigate} from "react-router-dom";
 import {useCookies} from "react-cookie";
 import CharacterPoint from "components/UI/CharacterPoint/CharacterPoint";
 import DeleteBtn from "components/UI/DeleteBtn";
-import {getObjectValues} from "utils/helpers/helpers";
+import {getObjectEntries} from "utils/helpers/helpers";
+import {CARD_CHARACTERS} from "utils/constances/constances";
 
 type CardProps = {
   removePerson: Function;
   editPersonMainCharacters: Function;
   name: string;
   age: string;
-  id: number;
+  id: string;
   location: string;
   job: string;
   gender: string;
@@ -27,48 +28,24 @@ function Card({removePerson, editPersonMainCharacters, ...props}: CardProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isEditActive, setIsEditActive] = useState(false);
   const [isCardVisible, setIsCardVisible] = useState(true);
-  const [editCharacters, setEditCharacters] = useState({
-    name: props.name,
-    age: props.age,
-    id: props.id,
-    gender: "",
-    job: "",
-    location: "",
-    history: "",
-    comments: "",
-  });
+  const [propsEntries] = useState(getObjectEntries(props, CARD_CHARACTERS));
 
-  const followingToDescripPage = (persId: number) => {
-    setCookies("choosedPerson", `${persId}`);
+  const [editCharacters, setEditCharacters] = useState(props);
+
+  const followingToDescripPage = (persId: string) => {
+    setCookies("choosedPerson", persId);
     navigate(`/:${cookies.choosedPerson}`);
   };
   const editPerson = useCallback(
     (params: {}) => {
-      editPersonMainCharacters({...params, id: props.id});
+      editPersonMainCharacters({...params, id: editCharacters.id});
       setIsMenuOpen(false);
       setIsEditActive(false);
     },
-    [props.id, editPersonMainCharacters],
+    [editCharacters.id],
   );
 
-  const paramsName = Object.keys(editCharacters).filter(
-    el => el !== "name" && el !== "id" && el !== "history" && el !== "comments",
-  );
-  // const paramsName=getObjectKeys(editCharacters,["name", "id", "history", "comments"])
-  const paramsValue = getObjectValues(editCharacters, [
-    props.name,
-    props.id,
-    props.history,
-    props.comments,
-  ]);
-  const propsValue = Object.values(props).filter(
-    el =>
-      el !== props.name &&
-      el !== props.id &&
-      el !== props.history &&
-      el !== props.comments,
-  );
-
+  // TODO: отредактировать имя в длину
   return (
     <div className={isCardVisible ? "personCard" : "personCard cardAnimation"}>
       <div
@@ -77,23 +54,20 @@ function Card({removePerson, editPersonMainCharacters, ...props}: CardProps) {
       ></div>
 
       <div className="personCard__avatar">
-        {" "}
         <img
-          onClick={() => followingToDescripPage(props.id)}
-          src={props.gender === "man" ? avatarMan : avatarWoman}
+          onClick={() => followingToDescripPage(editCharacters.id)}
+          src={editCharacters.gender === "man" ? avatarMan : avatarWoman}
           alt="ava-man"
         />
         <CharacterPoint
           page="name"
           isEditActive={isEditActive}
           paramName={"name"}
-          param={editCharacters.name ? editCharacters.name : props.name}
-          // editCharacters={editCharacters}
-          // setEditCharacters={setEditCharacters}
-          onChange={(e: string) =>
+          param={editCharacters.name}
+          onChange={(text: string) =>
             setEditCharacters({
               ...editCharacters,
-              [editCharacters.name ? editCharacters.name : props.name]: e,
+              name: text,
             })
           }
         />
@@ -115,7 +89,7 @@ function Card({removePerson, editPersonMainCharacters, ...props}: CardProps) {
           {isMenuOpen ? (
             <div className="descrip__activeBtns">
               <EditBtn onClick={() => setIsEditActive(true)} />
-              <DeleteBtn deleteItem={() => removePerson(props.id)} />
+              <DeleteBtn deleteItem={() => removePerson(editCharacters.id)} />
             </div>
           ) : (
             <div
@@ -128,48 +102,21 @@ function Card({removePerson, editPersonMainCharacters, ...props}: CardProps) {
           )}
         </div>
         <ul>
-          {paramsName.map((keyName, index) => (
+          {propsEntries.map(keyName => (
             <CharacterPoint
-              key={keyName}
+              key={keyName[0]}
               page="card"
               isEditActive={isEditActive}
-              paramName={keyName}
-              param={
-                paramsValue[index] ? paramsValue[index] : propsValue[index]
-              }
-              // editCharacters={editCharacters}
-              // setEditCharacters={setEditCharacters}
+              paramName={keyName[0]}
+              param={keyName[1]}
               onChange={(e: string) =>
                 setEditCharacters({
                   ...editCharacters,
-                  [propsValue[index]]: e,
+                  [keyName[0]]: e,
                 })
               }
             />
           ))}
-
-          {/* <li>
-            age:{" "}
-            {isEditActive ? (
-              <input
-                value={editCharacters.age}
-                className="descrip__ageEdit"
-                type="text"
-                onChange={e =>
-                  setEditCharacters({
-                    ...editCharacters,
-                    // age: Number(e.target.value),
-                    age: Number(e.target.value),
-                  })
-                }
-              />
-            ) : (
-              props.age
-            )}
-          </li> */}
-          {/* <li>job: {props.job}</li>
-          <li>city: {props.location}</li>
-          <li>gender: {props.gender}</li> */}
         </ul>
       </div>
     </div>
