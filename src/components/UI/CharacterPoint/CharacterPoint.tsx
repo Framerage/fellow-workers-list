@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {editWordFirstSymbolToUpperCase} from "utils/helpers/helpers";
 import "./characterPoint.scss";
 type PointProps = {
@@ -17,26 +17,49 @@ const CharacterPoint = ({
 }: PointProps) => {
   const [paramsValue, setParamsValue] = useState(param);
 
-  return (
-    <li className="characters__item">
-      {paramName ? editWordFirstSymbolToUpperCase(paramName) + ": " : ""}
-      {isEditActive ? (
-        <input
-          className={
-            page !== "card"
-              ? "characters__editRange"
-              : "characters__editRange cardEdit"
-          }
-          type={"text"}
-          value={paramsValue}
-          onChange={e => {
-            setParamsValue(e.target.value);
-            onChange(e.target.value);
-          }}
-        />
-      ) : (
-        <span className="item__text">{param}</span>
-      )}
+  useEffect(() => {
+    setTimeout(() => {
+      if (param !== paramsValue) {
+        console.log("не одинаковые");
+        onChange(paramsValue);
+      }
+    }, 3500);
+  }, [paramsValue]);
+
+  return isEditActive ? (
+    <li
+      className={
+        paramName === "name" ? "characters__item nameItem" : "characters__item"
+      }
+    >
+      <span className="item__textName">
+        {paramName ? editWordFirstSymbolToUpperCase(paramName) + ": " : ""}
+      </span>
+      <input
+        className={
+          page !== "card"
+            ? "characters__editRange"
+            : "characters__editRange cardEdit"
+        }
+        type={"text"}
+        value={paramsValue}
+        onChange={e => {
+          setParamsValue(e.target.value);
+          onChange(e.target.value);
+          clearTimeout("");
+        }}
+      />
+    </li>
+  ) : (
+    <li
+      className={
+        paramName === "name" ? "characters__item nameItem" : "characters__item"
+      }
+    >
+      <span className="item__textName">
+        {paramName ? editWordFirstSymbolToUpperCase(paramName) + ": " : ""}
+      </span>
+      <span className="item__text">{param}</span>
     </li>
   );
 };

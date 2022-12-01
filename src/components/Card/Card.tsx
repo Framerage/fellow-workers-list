@@ -45,7 +45,6 @@ function Card({removePerson, editPersonMainCharacters, ...props}: CardProps) {
     [editCharacters.id],
   );
 
-  // TODO: отредактировать имя в длину
   return (
     <div className={isCardVisible ? "personCard" : "personCard cardAnimation"}>
       <div

@@ -22,7 +22,7 @@ const Home = () => {
   const isDataFetched = useSelector(selectIsPromiseReady);
   const [cookies] = useCookies(["choosedPerson"]);
   const [personList, setPersonList] = useState<PersonListProps[]>(gettedList);
-  // console.log(isDataFetched, " isDataFetched from Home");
+
   useEffect(() => {
     cookies.choosedPerson &&
       setPersonList([

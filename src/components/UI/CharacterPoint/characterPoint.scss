@@ -10,9 +10,17 @@
     padding: 1px;
   }
   .cardEdit {
-    width: 65px;
+    width: 80%;
+  }
+  .item__textName{
+    color: $textContentColor;
+
   }
   .item__text {
     color: $textContentColor;
   }
+}
+.nameItem{
+  display:flex;
+  flex-direction: column;
 }
