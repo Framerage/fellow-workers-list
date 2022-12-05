@@ -20,18 +20,26 @@
       transform: scale(0.95);
     }
   }
-  .header__outline{
-    display: flex;
-    justify-content: center;
-    .themeColorBlock{
-      width: 30px;
-      height: 10px;
-      margin: 2px 5px;
-      transition: 0.2s;
-      cursor: pointer;
-      &:hover{
-        box-shadow: 0 0 5px white;
-      }
+  .testRange{
+    -webkit-appearance: none !important;
+    background: linear-gradient(to right,$rangeColors);
+    height: 10px;
+    cursor: pointer;
+  }
+  .testRange::-webkit-slider-thumb{
+    -webkit-appearance: none !important;
+    background:transparent;
+    border: 1px solid white;
+    border-radius: 7px;
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: 0.2s;
+    &:hover {
+      opacity: 1;
+      border: 2px solid white;
+      transform: scale(1.05);
     }
   }
 }

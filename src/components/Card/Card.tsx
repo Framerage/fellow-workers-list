@@ -11,7 +11,7 @@ import {getObjectEntries} from "utils/helpers/helpers";
 import {CARD_CHARACTERS} from "utils/constances/constances";
 
 type CardProps = {
-  removePerson: Function;
+  removePerson: (persId: string) => void;
   editPersonMainCharacters: Function;
   name: string;
   age: string;

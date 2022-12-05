@@ -1,7 +1,9 @@
 :root {
   --themeColor: yellowgreen;
+  --colorRange: white;
 }
 $themeBsColor: var(--themeColor);
+$rangeColors:var(--colorRange);
 $themeTsColorMain: blue;
 $themeTsColorSelection: white;
 $textContentColor: white;

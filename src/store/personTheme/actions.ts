@@ -1,3 +1,3 @@
-import { createAction } from "@reduxjs/toolkit";
+import {createAction} from "@reduxjs/toolkit";
 
-export const changeUserTheme = createAction<string>("THEME/changeTheme");
+export const changeUserTheme = createAction<number>("THEME/changeTheme");

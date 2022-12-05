@@ -18,12 +18,13 @@ const CharacterPoint = ({
   const [paramsValue, setParamsValue] = useState(param);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       if (param !== paramsValue) {
         console.log("не одинаковые");
         onChange(paramsValue);
       }
     }, 3500);
+    return () => clearTimeout(timer);
   }, [paramsValue]);
 
   return isEditActive ? (

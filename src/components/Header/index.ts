@@ -1,1 +1,1 @@
-export {default} from "./HeaderControl";
+export {default} from "./Modal";
