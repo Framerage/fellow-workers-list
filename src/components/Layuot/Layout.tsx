@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "components/Header/";
-import DescripPage from "pages/Description/DescripPage";
-import HomeModel from "pages/Home";
+import Header from "components/Header";
+import DescripPage from "pages/Description";
+import Home from "pages/Home";
 import {Route, Routes} from "react-router-dom";
 import "./layout.scss";
 const Layout = () => {
@@ -9,7 +9,7 @@ const Layout = () => {
     <div className="wrapper">
       <Header />
       <Routes>
-        <Route index path="/" element={<HomeModel />} />
+        <Route index path="/" element={<Home />} />
         <Route path="/:id" element={<DescripPage />} />
       </Routes>
     </div>

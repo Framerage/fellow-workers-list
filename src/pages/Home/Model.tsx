@@ -7,9 +7,9 @@ import {
   selectPersonList,
 } from "store/personList/selectors";
 import {AppDispatch} from "types/appTypes";
-import HomeController from "./HomeController";
+import Controller from "./Controller";
 
-const HomeModel = () => {
+const Model = () => {
   const dispatch = useDispatch<AppDispatch>();
   const gettedList = useSelector(selectPersonList);
   const isDataFetched = useSelector(selectIsPromiseReady);
@@ -22,7 +22,7 @@ const HomeModel = () => {
     );
   };
   return (
-    <HomeController
+    <Controller
       dispatch={dispatch}
       gettedList={gettedList}
       cookies={cookies.choosedPerson}
@@ -31,4 +31,4 @@ const HomeModel = () => {
     />
   );
 };
-export default HomeModel;
+export default Model;

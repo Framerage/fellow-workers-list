@@ -1,12 +1,8 @@
 import React, {useCallback, useEffect, useState} from "react";
-import {
-  deletePersonFromList,
-  editPersonCharacters,
-  fetchPersonList,
-} from "store/personList/actions";
+import {editPersonCharacters, fetchPersonList} from "store/personList/actions";
 import {PersonListProps} from "types/appTypes";
 import {editPersonParams} from "utils/helpers/helpers";
-import {HomeView} from "./HomeView";
+import {View} from "./View";
 type HomeControllerProps = {
   dispatch: Function;
   gettedList: PersonListProps[];
@@ -14,7 +10,7 @@ type HomeControllerProps = {
   isDataFetched: boolean;
   onRemovePerson: (persId: string) => void;
 };
-const HomeController: React.FC<HomeControllerProps> = ({
+const Controller: React.FC<HomeControllerProps> = ({
   dispatch,
   gettedList,
   cookies,
@@ -59,7 +55,7 @@ const HomeController: React.FC<HomeControllerProps> = ({
     [gettedList, dispatch],
   );
   return (
-    <HomeView
+    <View
       onRemovePerson={removePerson}
       editPersonMainCharacters={editPersonMainCharacters}
       personList={personList}
@@ -67,4 +63,4 @@ const HomeController: React.FC<HomeControllerProps> = ({
     />
   );
 };
-export default HomeController;
+export default Controller;

@@ -1,50 +1,39 @@
-import React, {useCallback, useState} from "react";
+import React from "react";
 import "./card.scss";
 import EditBtn from "components/UI/EditBtn/EditBtn";
 import avatarMan from "../../assets/images/avatar-man.png";
 import avatarWoman from "../../assets/images/avatar-woman.png";
-import {useNavigate} from "react-router-dom";
-import {useCookies} from "react-cookie";
 import CharacterPoint from "components/UI/CharacterPoint/CharacterPoint";
 import DeleteBtn from "components/UI/DeleteBtn";
-import {getObjectEntries} from "utils/helpers/helpers";
-import {CARD_CHARACTERS} from "utils/constances/constances";
-
-type CardProps = {
+import {PersonListProps} from "types/appTypes";
+type CardViewprops = {
+  isEditActive: boolean;
+  isCardVisible: boolean;
+  isMenuOpen: boolean;
+  editCharacters: PersonListProps;
+  setEditCharacters: Function;
+  setIsCardVisible: Function;
+  setIsMenuOpen: Function;
+  setIsEditActive: Function;
+  followingToDescripPage: (persId: string) => void;
   removePerson: (persId: string) => void;
-  editPersonMainCharacters: Function;
-  name: string;
-  age: string;
-  id: string;
-  location: string;
-  job: string;
-  gender: string;
-  history: string;
-  comments: string;
+  editPerson: (param: {}) => void;
+  propsEntries: [string, any][];
 };
-function Card({removePerson, editPersonMainCharacters, ...props}: CardProps) {
-  const navigate = useNavigate();
-  const [cookies, setCookies] = useCookies(["choosedPerson"]);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isEditActive, setIsEditActive] = useState(false);
-  const [isCardVisible, setIsCardVisible] = useState(true);
-  const [propsEntries] = useState(getObjectEntries(props, CARD_CHARACTERS));
-
-  const [editCharacters, setEditCharacters] = useState(props);
-
-  const followingToDescripPage = (persId: string) => {
-    setCookies("choosedPerson", persId);
-    navigate(`/:${cookies.choosedPerson}`);
-  };
-  const editPerson = useCallback(
-    (params: {}) => {
-      editPersonMainCharacters({...params, id: editCharacters.id});
-      setIsMenuOpen(false);
-      setIsEditActive(false);
-    },
-    [editCharacters.id],
-  );
-
+export const View: React.FC<CardViewprops> = ({
+  isEditActive,
+  isCardVisible,
+  isMenuOpen,
+  editCharacters,
+  setEditCharacters,
+  setIsCardVisible,
+  setIsMenuOpen,
+  setIsEditActive,
+  followingToDescripPage,
+  editPerson,
+  removePerson,
+  propsEntries,
+}) => {
   return (
     <div className={isCardVisible ? "personCard" : "personCard cardAnimation"}>
       <div
@@ -120,5 +109,4 @@ function Card({removePerson, editPersonMainCharacters, ...props}: CardProps) {
       </div>
     </div>
   );
-}
-export default Card;
+};

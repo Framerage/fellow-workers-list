@@ -1,1 +1,1 @@
-export { default } from "./DescripPage";
+export {default} from "./Modal";
