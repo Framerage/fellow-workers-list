@@ -19,7 +19,6 @@ export const View: React.FC<HeaderProps> = ({
         className="testRange"
         min={0}
         max={THEMES_COLORS.length - 1}
-        step={1}
         value={value}
         onChange={e => onChangeTheme(e)}
       />

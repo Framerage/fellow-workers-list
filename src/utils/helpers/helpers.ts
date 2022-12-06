@@ -24,13 +24,11 @@ export const editPersonParams = (
 export const editWordFirstSymbolToUpperCase = (text: string) => {
   return text[0].toUpperCase() + text.slice(1);
 };
-export const getObjectValues = (obj: {}, params: any[]) => {
-  return Object.values(obj).filter(
-    el => el && el === params.map(param => param),
-  );
-};
 export const getObjectKeys = (obj: {}, params: string[]) => {
-  return Object.values(obj).filter(el => el !== params.map(param => param));
+  return Object.keys(obj).filter(el => params.includes(el[0]));
+};
+export const getObjectValues = (obj: {}, params: any[]) => {
+  return Object.values(obj).filter(el => params.includes(el));
 };
 export const getObjectEntries = (obj: {}, params: string[]) => {
   return Object.entries(obj).filter(el => params.includes(el[0]));

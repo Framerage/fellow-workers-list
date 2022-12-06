@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {CARD_CHARACTERS} from "utils/constances/constances";
 import {getObjectEntries} from "utils/helpers/helpers";
 import {View} from "./View";
@@ -24,9 +24,12 @@ export const Controller: React.FC<CardControllerProps> = ({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isEditActive, setIsEditActive] = useState(false);
   const [isCardVisible, setIsCardVisible] = useState(true);
-  const [propsEntries] = useState(getObjectEntries(props, CARD_CHARACTERS));
-
-  const [editCharacters, setEditCharacters] = useState({...props});
+  const [propsEntries, setPropsEntry] = useState(
+    getObjectEntries(props, CARD_CHARACTERS),
+  );
+  const [paramNames, setParamNames] = useState(propsEntries.map(el => el[0]));
+  const [paramValues, setParamValues] = useState(propsEntries.map(el => el[1]));
+  const [editCharacters, setEditCharacters] = useState(props);
 
   const editPerson = useCallback(
     (params: {}) => {
@@ -36,20 +39,39 @@ export const Controller: React.FC<CardControllerProps> = ({
     },
     [editCharacters.id],
   );
+
+  useEffect(() => {
+    setPropsEntry(getObjectEntries(editCharacters, CARD_CHARACTERS));
+    setParamNames(
+      getObjectEntries(editCharacters, CARD_CHARACTERS).map(el => el[0]),
+    );
+    setParamValues(
+      getObjectEntries(editCharacters, CARD_CHARACTERS).map(el => el[1]),
+    );
+  }, [editCharacters]);
+
+  const onEditChoosedParam = (text: string, keyName: string) => {
+    setEditCharacters({
+      ...editCharacters,
+      [keyName]: text,
+    });
+  };
+
   return (
     <View
       isEditActive={isEditActive}
       isCardVisible={isCardVisible}
       editCharacters={editCharacters}
-      setEditCharacters={setEditCharacters}
       setIsCardVisible={setIsCardVisible}
       isMenuOpen={isMenuOpen}
       setIsMenuOpen={setIsMenuOpen}
       followingToDescripPage={followingToDescripPage}
       setIsEditActive={setIsEditActive}
-      propsEntries={propsEntries}
+      paramNames={paramNames}
+      paramValues={paramValues}
       editPerson={editPerson}
       removePerson={removePerson}
+      onEditChoosedParam={onEditChoosedParam}
     />
   );
 };

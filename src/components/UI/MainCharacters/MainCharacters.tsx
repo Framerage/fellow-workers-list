@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {PersonListProps} from "types/appTypes";
 import CharacterPoint from "../CharacterPoint";
 import ControlBtns from "../ControlBtns";
@@ -22,19 +22,31 @@ const MainCharacters = ({
   setPersonInfo,
   personInfo,
 }: MainCharactersProps) => {
+  const [characterNames, setCharacterNames] = useState(
+    characterValues.map(el => el[0]),
+  );
+  const [characterDatas, setCharacterDatas] = useState(() =>
+    characterValues.map(el => el[1]),
+  );
+
+  useEffect(() => {
+    setCharacterNames(characterValues.map(el => el[0]));
+    setCharacterDatas(characterValues.map(el => el[1]));
+  }, [characterValues]);
+
   return (
     <div className="personalDescrip__characters">
       <ul>
-        {characterValues.map(characterName => (
+        {characterNames.map((characterName, index) => (
           <CharacterPoint
-            key={characterName[0]}
+            key={characterName}
             page="descrip"
-            param={characterName[1]}
-            paramName={characterName[0]}
+            param={characterDatas[index]}
+            paramName={characterName}
             onChange={(text: string) =>
               setPersonInfo({
                 ...personInfo,
-                [characterName[0]]: text,
+                [characterName]: text,
               })
             }
             isEditActive={isEditCharactersOpen}

@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 import {changeUserTheme} from "store/personTheme/actions";
 import {selectUserTheme} from "store/personTheme/selectors";
 import {AppDispatch} from "types/appTypes";
-import {Control} from "./Control";
+import {Controller} from "./Controller";
 
 const Modal = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const Modal = () => {
     dispatch(changeUserTheme(index));
   };
   return (
-    <Control
+    <Controller
       goToHemePage={goToHemePage}
       userTheme={userTheme}
       dispatchUserTheme={dispatchUserTheme}

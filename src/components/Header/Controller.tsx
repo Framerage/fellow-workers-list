@@ -6,7 +6,7 @@ type HeaderControlProps = {
   userTheme: number;
   dispatchUserTheme: (index: number) => void;
 };
-export const Control: React.FC<HeaderControlProps> = ({
+export const Controller: React.FC<HeaderControlProps> = ({
   goToHemePage,
   userTheme,
   dispatchUserTheme,

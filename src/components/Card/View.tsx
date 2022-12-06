@@ -11,28 +11,30 @@ type CardViewprops = {
   isCardVisible: boolean;
   isMenuOpen: boolean;
   editCharacters: PersonListProps;
-  setEditCharacters: Function;
   setIsCardVisible: Function;
   setIsMenuOpen: Function;
   setIsEditActive: Function;
   followingToDescripPage: (persId: string) => void;
   removePerson: (persId: string) => void;
   editPerson: (param: {}) => void;
-  propsEntries: [string, any][];
+  onEditChoosedParam: (text: string, keyName: string) => void;
+  paramNames: string[];
+  paramValues: any[];
 };
 export const View: React.FC<CardViewprops> = ({
   isEditActive,
   isCardVisible,
   isMenuOpen,
   editCharacters,
-  setEditCharacters,
   setIsCardVisible,
   setIsMenuOpen,
   setIsEditActive,
   followingToDescripPage,
   editPerson,
   removePerson,
-  propsEntries,
+  paramNames,
+  paramValues,
+  onEditChoosedParam,
 }) => {
   return (
     <div className={isCardVisible ? "personCard" : "personCard cardAnimation"}>
@@ -52,12 +54,7 @@ export const View: React.FC<CardViewprops> = ({
           isEditActive={isEditActive}
           paramName={"name"}
           param={editCharacters.name}
-          onChange={(text: string) =>
-            setEditCharacters({
-              ...editCharacters,
-              name: text,
-            })
-          }
+          onChange={(text: string) => onEditChoosedParam(text, "name")}
         />
       </div>
       <div className="personCard__descrip">
@@ -90,19 +87,14 @@ export const View: React.FC<CardViewprops> = ({
           )}
         </div>
         <ul>
-          {propsEntries.map(keyName => (
+          {paramNames.map((keyName, index) => (
             <CharacterPoint
-              key={keyName[0]}
+              key={keyName}
               page="card"
               isEditActive={isEditActive}
-              paramName={keyName[0]}
-              param={keyName[1]}
-              onChange={(e: string) =>
-                setEditCharacters({
-                  ...editCharacters,
-                  [keyName[0]]: e,
-                })
-              }
+              paramName={keyName}
+              param={paramValues[index]}
+              onChange={(text: string) => onEditChoosedParam(text, keyName)}
             />
           ))}
         </ul>

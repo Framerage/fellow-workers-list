@@ -47,7 +47,6 @@ const CharacterPoint = ({
         onChange={e => {
           setParamsValue(e.target.value);
           onChange(e.target.value);
-          clearTimeout("");
         }}
       />
     </li>

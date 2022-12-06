@@ -1,9 +1,7 @@
 import React from "react";
 import "./editBtn.scss";
-type EditBtnProps = {
-  onClick: any;
-};
-const EditBtn = ({ onClick }: EditBtnProps) => {
+
+const EditBtn: React.FC<{onClick: () => void}> = ({onClick}) => {
   return <div onClick={onClick} className="editBtn"></div>;
 };
 export default EditBtn;

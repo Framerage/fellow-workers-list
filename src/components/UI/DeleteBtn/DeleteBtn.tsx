@@ -1,11 +1,11 @@
 import React from "react";
 import "./deleteBtn.scss";
-const DeleteBtn = ({deleteItem}: {deleteItem: Function}) => {
+const DeleteBtn = ({deleteItem}: {deleteItem: () => void}) => {
   return (
     <button
       role="presentation"
       className="activeBtn__deletedBtn"
-      onClick={() => deleteItem()}
+      onClick={deleteItem}
     >
       x
     </button>
