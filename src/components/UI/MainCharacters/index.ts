@@ -1,1 +1,1 @@
-export {default} from "./MainCharacters";
+export {default} from "./Controller";

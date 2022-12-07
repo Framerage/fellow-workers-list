@@ -1,1 +1,1 @@
-export {default} from "./CharacterPoint";
+export {default} from "./Controller";

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import EditExtraCharacters from "../EditExtraCharacters";
+import EditExtraCharacters from "../EditExtraCharacters/Controller";
 import ExtraCharacters from "../ExtraCharacters";
 type ExtraCharactersProps = {
   text: string;

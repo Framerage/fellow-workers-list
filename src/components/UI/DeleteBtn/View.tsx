@@ -1,6 +1,6 @@
 import React from "react";
 import "./deleteBtn.scss";
-const DeleteBtn = ({deleteItem}: {deleteItem: () => void}) => {
+const View = ({deleteItem}: {deleteItem: () => void}) => {
   return (
     <button
       role="presentation"
@@ -11,4 +11,4 @@ const DeleteBtn = ({deleteItem}: {deleteItem: () => void}) => {
     </button>
   );
 };
-export default DeleteBtn;
+export default View;

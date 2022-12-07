@@ -2,7 +2,7 @@ import React from "react";
 import "./descripPage.scss";
 import avatarWoman from "../../assets/images/avatar-woman.png";
 import avatarMan from "../../assets/images/avatar-man.png";
-import MainCharacters from "components/UI/MainCharacters";
+import MainCharacters from "components/UI/MainCharacters/Controller";
 import ExtraCharactersField from "components/UI/ExtraCharactersField";
 import {PersonListProps} from "types/appTypes";
 type DecripViewProps = {

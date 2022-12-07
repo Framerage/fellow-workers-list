@@ -1,39 +1,26 @@
-import React, {useEffect, useState} from "react";
-import {PersonListProps} from "types/appTypes";
+import React from "react";
 import CharacterPoint from "../CharacterPoint";
 import ControlBtns from "../ControlBtns";
 import EditBtn from "../EditBtn";
 import "./mainCharacters.scss";
-type MainCharactersProps = {
-  closeEdition: () => void;
+type ViewMainCharactersProps = {
+  characterNames: string[];
+  characterDatas: string[];
   openEdition: () => void;
+  closeEdition: () => void;
   editPersonalParams: () => void;
-  characterValues: any[];
   isEditCharactersOpen: boolean;
-  setPersonInfo: Function;
-  personInfo: PersonListProps;
+  editPersonInfo: (keyName: string, text: string) => void;
 };
-const MainCharacters = ({
-  characterValues,
-  closeEdition,
+export const View: React.FC<ViewMainCharactersProps> = ({
+  characterNames,
+  characterDatas,
   openEdition,
+  closeEdition,
   editPersonalParams,
   isEditCharactersOpen,
-  setPersonInfo,
-  personInfo,
-}: MainCharactersProps) => {
-  const [characterNames, setCharacterNames] = useState(
-    characterValues.map(el => el[0]),
-  );
-  const [characterDatas, setCharacterDatas] = useState(() =>
-    characterValues.map(el => el[1]),
-  );
-
-  useEffect(() => {
-    setCharacterNames(characterValues.map(el => el[0]));
-    setCharacterDatas(characterValues.map(el => el[1]));
-  }, [characterValues]);
-
+  editPersonInfo,
+}) => {
   return (
     <div className="personalDescrip__characters">
       <ul>
@@ -43,12 +30,7 @@ const MainCharacters = ({
             page="descrip"
             param={characterDatas[index]}
             paramName={characterName}
-            onChange={(text: string) =>
-              setPersonInfo({
-                ...personInfo,
-                [characterName]: text,
-              })
-            }
+            onChange={(text: string) => editPersonInfo(characterName, text)}
             isEditActive={isEditCharactersOpen}
           />
         ))}
@@ -64,4 +46,3 @@ const MainCharacters = ({
     </div>
   );
 };
-export default MainCharacters;

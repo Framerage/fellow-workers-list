@@ -1,9 +1,9 @@
 import React from "react";
 import "./card.scss";
-import EditBtn from "components/UI/EditBtn/EditBtn";
+import EditBtn from "components/UI/EditBtn";
 import avatarMan from "../../assets/images/avatar-man.png";
 import avatarWoman from "../../assets/images/avatar-woman.png";
-import CharacterPoint from "components/UI/CharacterPoint/CharacterPoint";
+import CharacterPoint from "components/UI/CharacterPoint";
 import DeleteBtn from "components/UI/DeleteBtn";
 import {PersonListProps} from "types/appTypes";
 type CardViewprops = {

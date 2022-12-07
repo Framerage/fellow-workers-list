@@ -2,16 +2,16 @@ import React from "react";
 import {editWordFirstSymbolToUpperCase} from "utils/helpers/helpers";
 import EditBtn from "../EditBtn";
 import "./extraCharacters.scss";
-type extraCharactersProps = {
+type ViewExtraCharactersProps = {
   text: string;
   textName: string;
   openEditArea: Function;
 };
-const ExtraCharacters = ({
+const View: React.FC<ViewExtraCharactersProps> = ({
   text,
   textName,
   openEditArea,
-}: extraCharactersProps) => {
+}) => {
   return (
     <div className="personalDescrip__detailedDescrip">
       <div className="detailedDescrip">
@@ -22,4 +22,4 @@ const ExtraCharacters = ({
     </div>
   );
 };
-export default ExtraCharacters;
+export default View;

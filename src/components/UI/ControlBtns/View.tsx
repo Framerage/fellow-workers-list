@@ -1,10 +1,10 @@
 import React from "react";
 import "./controlBtns.scss";
-type ControlBtnsProps = {
+type ViewControlBtnsProps = {
   editPersonalParams: Function;
   closeEdition: () => void;
 };
-const ControlBtns = ({editPersonalParams, closeEdition}: ControlBtnsProps) => {
+const View = ({editPersonalParams, closeEdition}: ViewControlBtnsProps) => {
   return (
     <div className="characters__controlBtns">
       <button
@@ -22,4 +22,4 @@ const ControlBtns = ({editPersonalParams, closeEdition}: ControlBtnsProps) => {
     </div>
   );
 };
-export default ControlBtns;
+export default View;

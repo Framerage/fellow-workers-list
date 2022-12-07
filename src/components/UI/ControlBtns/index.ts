@@ -1,1 +1,1 @@
-export {default} from "./ControlBtns";
+export {default} from "./View";

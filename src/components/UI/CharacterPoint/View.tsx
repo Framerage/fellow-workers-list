@@ -1,32 +1,24 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {editWordFirstSymbolToUpperCase} from "utils/helpers/helpers";
 import "./characterPoint.scss";
-type PointProps = {
-  param: any;
+type ViewCharacterPointProps = {
   isEditActive: boolean;
   paramName: string;
+  param: string;
   page: string;
-  onChange: Function;
+  paramsValue: string;
+  setParamsValue: Function;
+  onChange: (text: string) => void;
 };
-const CharacterPoint = ({
-  param,
+export const View: React.FC<ViewCharacterPointProps> = ({
   isEditActive,
   paramName,
+  param,
   page,
+  paramsValue,
+  setParamsValue,
   onChange,
-}: PointProps) => {
-  const [paramsValue, setParamsValue] = useState(param);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (param !== paramsValue) {
-        console.log("не одинаковые");
-        onChange(paramsValue);
-      }
-    }, 3500);
-    return () => clearTimeout(timer);
-  }, [paramsValue]);
-
+}) => {
   return isEditActive ? (
     <li
       className={
@@ -63,4 +55,3 @@ const CharacterPoint = ({
     </li>
   );
 };
-export default CharacterPoint;

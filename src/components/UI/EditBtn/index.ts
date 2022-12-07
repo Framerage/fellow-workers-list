@@ -1,1 +1,1 @@
-export { default } from "./EditBtn";
+export {default} from "./View";

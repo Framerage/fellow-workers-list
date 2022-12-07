@@ -1,1 +1,1 @@
-export {default} from "./EditExtraCharacters";
+export {default} from "./Controller";

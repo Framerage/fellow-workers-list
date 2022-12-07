@@ -1,1 +1,1 @@
-export {default} from "./ExtraCharacters";
+export {default} from "./View";
